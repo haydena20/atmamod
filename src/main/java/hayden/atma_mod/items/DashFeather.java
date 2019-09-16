@@ -91,8 +91,11 @@ public class DashFeather extends ItemBase implements IBauble
 		
 		cd.setMaxTicks(100.0F);
 		
-		if (Keyboard.isKeyDown(jump) && !player.onGround && !player.isInWater() && (cd.getTicks() >= cd.getMaxTicks())) 
+		if (Keyboard.isKeyDown(jump) && (player.fallDistance > 0) && !player.isInWater() && (cd.getTicks() >= cd.getMaxTicks())) 
 		{
+			if(!player.isElytraFlying())
+				player.setVelocity(0, 0, 0);
+			
 			player.addVelocity(aim.x * 1.1, aim.y * 1.2, aim.z * 1.1);
 			player.fallDistance = -999;
 			
