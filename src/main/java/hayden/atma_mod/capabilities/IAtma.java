@@ -2,9 +2,13 @@ package hayden.atma_mod.capabilities;
 
 public interface IAtma 
 {
-	int getAtma();
+	public float getAtma();
 	
-	void addAtma(int amount);
-	void removeAtma(int amount);
-	void setAtma(int value);
+	public void addAtma(float amount);
+	public void removeAtma(float amount);
+	public void setAtma(float value);
+	
+	public float getMaxAtma();
+	
+	public void setMaxAtma(float value);
 }

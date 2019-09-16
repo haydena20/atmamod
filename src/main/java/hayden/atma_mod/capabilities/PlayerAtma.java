@@ -6,54 +6,61 @@ import net.minecraftforge.common.util.INBTSerializable;
 public class PlayerAtma implements IAtma, INBTSerializable<NBTTagCompound>
 {
 	
-	private int currentAtma;
-	private int maxAtma;
-	
-	public PlayerAtma(int maxAtma)
-	{
-		this.currentAtma = 0;
-		this.maxAtma = maxAtma;
-	}
+	private float currentAtma = 0.0F;
+	private float maxAtma = 10000.0F;
 	
 	@Override
-	public int getAtma() 
+	public float getAtma() 
 	{
 		return this.currentAtma;
 	}
 
 	@Override
-	public void addAtma(int amount) 
+	public void addAtma(float amount) 
 	{
 		this.currentAtma += amount;
 	}
 
 	@Override
-	public void removeAtma(int amount) 
-	{
+	public void removeAtma(float amount) 
+	{	
 		this.currentAtma -= amount;
 	}
 
 	@Override
-	public void setAtma(int value) 
+	public void setAtma(float value) 
 	{
 		this.currentAtma = value;
 	}
 	
+		@Override
+	public float getMaxAtma() 
+	{
+		return this.maxAtma;
+	}
+
+	@Override
+	public void setMaxAtma(float value) 
+	{
+		this.maxAtma = value;
+	}
+
 	@Override
 	public NBTTagCompound serializeNBT() 
 	{
 		NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setInteger("currentAtma", this.currentAtma);
-		nbt.setInteger("maxAtma", this.maxAtma);
+		nbt.setFloat("currentAtma", this.currentAtma);
+		nbt.setFloat("maxAtma", this.maxAtma);
 		return nbt;
 	}
 
 	@Override
 	public void deserializeNBT(NBTTagCompound nbt) 
 	{
-		this.currentAtma = nbt.getInteger("currentAtma");
-		this.maxAtma = nbt.getInteger("maxAtma");
+		this.currentAtma = nbt.getFloat("currentAtma");
+		this.maxAtma = nbt.getFloat("maxAtma");
 	}
+
 
 	
 }

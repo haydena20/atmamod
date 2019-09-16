@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hayden.atma_mod.items.ItemBase;
+import hayden.atma_mod.items.DashFeather;
 import hayden.atma_mod.items.tools.ToolSword;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
@@ -14,6 +15,10 @@ import net.minecraftforge.common.util.EnumHelper;
 public class ModItems 
 {
 	public static final List<Item> ITEMS = new ArrayList<Item>();
+	
+	public static final DashFeather DASHFEATHER = new DashFeather("dash_feather");
+	public static final Item BASEBALLBAT = new ItemBase("bat");
+	
 	
 	//materials
 	//public static final ToolMaterial MATERIAL_POWER = EnumHelper.addToolMaterial("material_power", 4, 250, 9.0F, 4.0F, 10);

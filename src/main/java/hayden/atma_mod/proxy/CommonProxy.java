@@ -6,10 +6,6 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 
 public class CommonProxy 
 {
-	public static void registerCapabilities()
-	{
-		
-	}
 	public void registerItemRenderer(Item item, int meta, String id) 
 	{
 		
