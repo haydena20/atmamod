@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hayden.atma_mod.items.ItemBase;
+import hayden.atma_mod.items.AtmaCoil;
+import hayden.atma_mod.items.Blindfold;
 import hayden.atma_mod.items.DashFeather;
 import hayden.atma_mod.items.tools.ToolSword;
 import net.minecraft.item.Item;
@@ -17,6 +19,8 @@ public class ModItems
 	public static final List<Item> ITEMS = new ArrayList<Item>();
 	
 	public static final DashFeather DASHFEATHER = new DashFeather("dash_feather");
+	public static final Blindfold BLINDFOLD = new Blindfold("blindfold");
+	public static final AtmaCoil ATMACOIL = new AtmaCoil("atma_coil");
 	public static final Item BASEBALLBAT = new ItemBase("bat");
 	
 	

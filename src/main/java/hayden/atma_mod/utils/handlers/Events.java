@@ -1,10 +1,13 @@
 package hayden.atma_mod.utils.handlers;
 
+import baubles.api.BaublesApi;
 import hayden.atma_mod.capabilities.AtmaProvider;
 import hayden.atma_mod.capabilities.CooldownBaubleProvider;
 import hayden.atma_mod.capabilities.IAtma;
 import hayden.atma_mod.capabilities.ICooldown;
 import hayden.atma_mod.init.ModItems;
+import hayden.atma_mod.items.AtmaCoil;
+import hayden.atma_mod.items.ItemBase;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommand;
@@ -13,6 +16,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -41,13 +45,14 @@ public class Events
 	{
 		EntityPlayer player = event.getEntityPlayer();
 		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
+		ICooldown charmcd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
 		
-		if(true)
+		if(BaublesApi.isBaubleEquipped(player, new AtmaCoil("atma_coil"))==1)
 		{
-			atma.addAtma(player.getCooledAttackStrength(0)*300);
+			charmcd.setTicks(0);
+			atma.addAtma(300);
 		}
-		else
-			return;
+				
 		
 		//Explosion explosion = new Explosion(event.getTarget().world, event.getEntityPlayer(), event.getTarget().posX, event.getTarget().posY, event.getTarget().posZ, 3.0F, false, false);
 		//explosion.doExplosionB(true);
@@ -63,36 +68,49 @@ public class Events
 		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
 		ICooldown charmcd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
 				
+//		Capability Tick Increases
+		
 		if(charmcd.getTicks() < charmcd.getMaxTicks());
 			charmcd.addTicks();
 		
-		if(player.getEntityWorld().isDaytime() && (atma.getAtma() < atma.getMaxAtma()))
-			atma.addAtma(1.0F);
+		if(player.getEntityWorld().canBlockSeeSky(player.getPosition()) && player.getEntityWorld().isDaytime() && (atma.getAtma() < atma.getMaxAtma()))
+			atma.addAtma(2F);
+		if(atma.getAtma() > atma.getMaxAtma())
+			atma.removeAtma(0.5F);
+		
+//		Atma Overload Effects
 		
 		if(atma.getAtma() > atma.getMaxAtma())
 		{
 			player.setFire(1);
 		}
 		
-		if(atma.getAtma() < 0.0F)
+//		Negative Atma Effects
+		
+		if(atma.getAtma() < 0.0F && player.ticksExisted%39==0) 
 		{
 			atma.removeAtma(0.5F);
-			player.addPotionEffect(new PotionEffect(MobEffects.HUNGER));
-			player.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS));
-			if(atma.getAtma() < -1000)
+			player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,40,0,true,true));
+			//player.addPotionEffect(new PotionEffect(MobEffects.WITHER,40,0,true,true));
+			player.removePotionEffect(MobEffects.HEALTH_BOOST);
+			player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,40,-2,false,false));
+			if(atma.getAtma() < -1000 && player.ticksExisted%39==0)
 			{
-				player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS));
-				player.addPotionEffect(new PotionEffect(MobEffects.WITHER));
-				if(atma.getAtma() < -2000)
+				player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,40,1,true,true));
+				//player.addPotionEffect(new PotionEffect(MobEffects.WITHER,40,1,true,true));
+				player.removePotionEffect(MobEffects.HEALTH_BOOST);
+				player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,40,-4,false,false));
+				if(atma.getAtma() < -2000 && player.ticksExisted%39==0)
 				{
-					player.setHealth(0);
-					player.setDead();
+					//player.addPotionEffect(new PotionEffect(MobEffects.WITHER,40,6,true,true));
+					player.removePotionEffect(MobEffects.HEALTH_BOOST);
+					player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,40,-5,false,false));
+					player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,80,0,false,false));
 				}
 					
 			}
-			else
-				player.removePotionEffect(MobEffects.HEALTH_BOOST);
 		}
+		
 		
 			
 	}
@@ -100,24 +118,11 @@ public class Events
 	@SubscribeEvent
 	public void onPlayerLogsIn(PlayerLoggedInEvent event)
 	{
-		EntityPlayer player = event.player;
-		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
 		
-		if(player.hasCapability(AtmaProvider.MAX_ATMA, null))
-		{
-			event.player.sendMessage(new TextComponentString(Float.toString(atma.getAtma())));
-		}
-		else
-			event.player.sendMessage(new TextComponentString("fuck"));
-		
-		//player.sendMessage(new TextComponentString(message));
 	}
 	@SubscribeEvent
 	public void onPlayerClone(PlayerEvent.PlayerRespawnEvent event)
 	{
-		EntityPlayer player = event.player;
-		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
-		
-		event.player.sendMessage(new TextComponentString(Float.toString(atma.getAtma())));
+			
 	}
 }

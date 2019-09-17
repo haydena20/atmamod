@@ -24,7 +24,7 @@ public class ModCapabilities
 	
 	public static void registerCapabilities()
 	{
-		CapabilityManager.INSTANCE.register(IWork.class, new CapabilityWorker(), Worker.class);
+		//CapabilityManager.INSTANCE.register(IWork.class, new CapabilityWorker(), Worker.class);
 		CapabilityManager.INSTANCE.register(IAtma.class, new AtmaStorage(), PlayerAtma.class); 
 		CapabilityManager.INSTANCE.register(ICooldown.class, new BaubleCooldown(), CooldownBaubles.class); 
 		System.out.println("Capabilities Registered");
