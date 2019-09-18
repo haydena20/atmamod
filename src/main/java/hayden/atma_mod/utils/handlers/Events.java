@@ -32,6 +32,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import net.minecraft.item.Item;
 
 public class Events 
 {
@@ -47,10 +48,11 @@ public class Events
 		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
 		ICooldown charmcd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
 		
-		if(BaublesApi.isBaubleEquipped(player, new AtmaCoil("atma_coil"))==1)
+		if(!(BaublesApi.isBaubleEquipped(player, ModItems.ATMACOIL) == -1) && charmcd.getTicks() >= charmcd.getMaxTicks())
 		{
+			player.addPotionEffect(new PotionEffect(MobEffects.SPEED,60,1,false,false));
+			atma.addAtma(500);
 			charmcd.setTicks(0);
-			atma.addAtma(300);
 		}
 				
 		
@@ -68,13 +70,17 @@ public class Events
 		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
 		ICooldown charmcd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
 				
+//		Checking and setting max Atma
+		
+		//Todo
+		
 //		Capability Tick Increases
 		
 		if(charmcd.getTicks() < charmcd.getMaxTicks());
 			charmcd.addTicks();
 		
 		if(player.getEntityWorld().canBlockSeeSky(player.getPosition()) && player.getEntityWorld().isDaytime() && (atma.getAtma() < atma.getMaxAtma()))
-			atma.addAtma(2F);
+			atma.addAtma(1F);
 		if(atma.getAtma() > atma.getMaxAtma())
 			atma.removeAtma(0.5F);
 		
@@ -82,6 +88,7 @@ public class Events
 		
 		if(atma.getAtma() > atma.getMaxAtma())
 		{
+			player.removePotionEffect(MobEffects.FIRE_RESISTANCE);
 			player.setFire(1);
 		}
 		

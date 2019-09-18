@@ -40,12 +40,6 @@ public class AtmaCoil extends ItemBase implements IBauble
 	}
 
 
-	@Override
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
-		if (this.isInCreativeTab(tab)) {
-			list.add(new ItemStack(this, 1, 0));
-		}
-	}
 
 	@Override
 	public BaubleType getBaubleType(ItemStack itemstack) {
@@ -90,11 +84,6 @@ public class AtmaCoil extends ItemBase implements IBauble
 		return EnumRarity.RARE;
 	}
 
-	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack)
-	{
-		return super.getUnlocalizedName() + "." + par1ItemStack.getItemDamage();
-	}
 
 	@Override
 	public void onEquipped(ItemStack itemstack, EntityLivingBase player) {
