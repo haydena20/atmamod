@@ -1,6 +1,9 @@
 
 //Items
 //item.bat.name=Bat
+
+item.atma_crystal.name=Lesser Atma Catalyst
+
 item.dash_feather.name=Phoenix Feather
 item.blindfold.name=Enchanted Blindfold
 item.atma_coil.name=Atma Coil

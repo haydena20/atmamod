@@ -3,24 +3,27 @@ package hayden.atma_mod.init;
 import java.util.ArrayList;
 import java.util.List;
 
-import hayden.atma_mod.items.ItemBase;
 import hayden.atma_mod.items.AtmaCoil;
+import hayden.atma_mod.items.AtmaCrystal;
 import hayden.atma_mod.items.Blindfold;
 import hayden.atma_mod.items.DashFeather;
-import hayden.atma_mod.items.tools.ToolSword;
+import hayden.atma_mod.items.ItemBase;
 import net.minecraft.item.Item;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
-import net.minecraftforge.common.util.EnumHelper;
 
 public class ModItems 
 {
 	public static final List<Item> ITEMS = new ArrayList<Item>();
 	
+//	Items
+	
+	public static final AtmaCrystal ATMACRYSTAL = new AtmaCrystal("atma_crystal", 1000);
+	
+//	Baubles
+	
 	public static final DashFeather DASHFEATHER = new DashFeather("dash_feather");
 	public static final Blindfold BLINDFOLD = new Blindfold("blindfold");
 	public static final AtmaCoil ATMACOIL = new AtmaCoil("atma_coil");
+	
 	public static final Item BASEBALLBAT = new ItemBase("bat");
 	
 	
