@@ -36,7 +36,7 @@ public class DashFeather extends ItemBase implements IBauble
 		super(name);
 		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
-		this.setMaxDamage(0);
+		this.setMaxDamage(200);
 		this.setCreativeTab(CreativeTabs.TOOLS);
 	}
 
@@ -104,6 +104,7 @@ public class DashFeather extends ItemBase implements IBauble
 			player.fallDistance = -999;
 			
 			atma.removeAtma(300.0F);
+			itemstack.damageItem(1, player);
 			cd.setTicks(0);
 		}
 	}

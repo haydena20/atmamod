@@ -16,7 +16,8 @@ public class ModItems
 	
 //	Items
 	
-	public static final AtmaCrystal ATMACRYSTAL = new AtmaCrystal("atma_crystal", 1000);
+	public static final AtmaCrystal LESSERATMACRYSTAL = new AtmaCrystal("lesser_atma_crystal", 1000);
+	public static final AtmaCrystal ATMACRYSTAL = new AtmaCrystal("atma_crystal", 10000);
 	
 //	Baubles
 	

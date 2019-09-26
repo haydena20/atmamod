@@ -18,10 +18,9 @@ public class CapabilityHandler
 	@SubscribeEvent
 	public void attachCapability(AttachCapabilitiesEvent<Entity> event)
 	{
-		//if (!(event.getObject() instanceof EntityPlayer)) return;
+		if (!(event.getObject() instanceof EntityPlayer)) return;
 		
 		event.addCapability(MAX_ATMA, new AtmaProvider());
-		
 		event.addCapability(COOLDOWN, new CooldownBaubleProvider());
 	}
 }

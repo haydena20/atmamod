@@ -2,7 +2,8 @@
 //Items
 //item.bat.name=Bat
 
-item.atma_crystal.name=Lesser Atma Catalyst
+item.lesser_atma_crystal.name=Lesser Atma Catalyst
+item.atma_crystal.name=Atma Catalyst
 
 item.dash_feather.name=Phoenix Feather
 item.blindfold.name=Enchanted Blindfold
