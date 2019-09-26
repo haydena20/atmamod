@@ -36,7 +36,7 @@ public class AtmaCrystal extends ItemBase
 		}
 		else
 		{
-			item.damageItem(item.getMaxDamage()/10, playerIn);
+			item.damageItem((item.getMaxDamage()/10)-1, playerIn);
 			atma.addAtma((item.getMaxDamage()/10));
 			((EntityPlayer)playerIn).getCooldownTracker().setCooldown(this, 5);
 		}

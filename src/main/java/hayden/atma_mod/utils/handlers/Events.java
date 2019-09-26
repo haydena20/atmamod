@@ -103,6 +103,10 @@ public class Events
 			atma.addAtma(1F);
 		if(atma.getAtma() > atma.getMaxAtma())
 			atma.removeAtma(0.5F);
+		if(player.ticksExisted%39==0)
+		{
+//			player.sendMessage();
+		}
 		
 //		Atma Overload Effects
 		
