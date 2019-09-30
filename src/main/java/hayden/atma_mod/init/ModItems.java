@@ -7,6 +7,7 @@ import hayden.atma_mod.items.AtmaCoil;
 import hayden.atma_mod.items.AtmaCrystal;
 import hayden.atma_mod.items.Blindfold;
 import hayden.atma_mod.items.DashFeather;
+import hayden.atma_mod.items.DebugTool;
 import hayden.atma_mod.items.ItemBase;
 import net.minecraft.item.Item;
 
@@ -15,6 +16,8 @@ public class ModItems
 	public static final List<Item> ITEMS = new ArrayList<Item>();
 	
 //	Items
+	
+	public static final DebugTool DEBUGTOOL = new DebugTool("debug_tool");
 	
 	public static final AtmaCrystal LESSERATMACRYSTAL = new AtmaCrystal("lesser_atma_crystal", 1000);
 	public static final AtmaCrystal ATMACRYSTAL = new AtmaCrystal("atma_crystal", 10000);

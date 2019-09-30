@@ -104,7 +104,7 @@ public class DashFeather extends ItemBase implements IBauble
 			player.fallDistance = -999;
 			
 			atma.removeAtma(300.0F);
-			itemstack.damageItem(1, player);
+			itemstack.damageItem(1, player);	
 			cd.setTicks(0);
 		}
 	}
