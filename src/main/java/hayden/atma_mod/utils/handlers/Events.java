@@ -15,6 +15,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
@@ -32,6 +33,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraft.item.Item;
 
@@ -55,8 +57,6 @@ public class Events
 			atma.addAtma(500);
 			charmcd.setTicks(0);
 		}
-				
-		
 		//Explosion explosion = new Explosion(event.getTarget().world, event.getEntityPlayer(), event.getTarget().posX, event.getTarget().posY, event.getTarget().posZ, 3.0F, false, false);
 		//explosion.doExplosionB(true);
 		//explosion.doExplosionA();
@@ -85,7 +85,7 @@ public class Events
 	
 	@SubscribeEvent
 	public void perPlayerTick(PlayerTickEvent event)
-	{	
+	{		
 		EntityPlayer player = event.player;
 		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
 		ICooldown charmcd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
@@ -99,8 +99,8 @@ public class Events
 		if(charmcd.getTicks() < charmcd.getMaxTicks());
 			charmcd.addTicks();
 		
-		if(player.getEntityWorld().canBlockSeeSky(player.getPosition()) && player.getEntityWorld().isDaytime() && (atma.getAtma() < atma.getMaxAtma()))
-			atma.addAtma(1F);
+//		if(player.getEntityWorld().canBlockSeeSky(player.getPosition()) && player.getEntityWorld().isDaytime() && (atma.getAtma() < atma.getMaxAtma()))
+//			atma.addAtma(1F);
 		if(atma.getAtma() > atma.getMaxAtma())
 			atma.removeAtma(0.5F);
 		if(player.ticksExisted%39==0)
@@ -141,11 +141,24 @@ public class Events
 					
 			}
 		}
-		
-		
-			
 	}
 		
+	@SubscribeEvent
+	public void updateClient(PlayerTickEvent event)
+	{
+		if(event.phase != Phase.END) return;
+		updatePlayerAtma(event.player);		
+	}
+	
+	private void updatePlayerAtma(EntityPlayer player) 
+	{
+		if(!player.world.isRemote) 
+		{
+			IAtma mh = player.getCapability(AtmaProvider.MAX_ATMA, null);
+
+			mh.updateClient(player);
+		}
+	}
 	@SubscribeEvent
 	public void onPlayerLogsIn(PlayerLoggedInEvent event)
 	{

@@ -16,6 +16,7 @@ public class GuiRenderHandler
     @SubscribeEvent
     public void onRenderGui(RenderGameOverlayEvent.Post event)
     {    	
+    	
     	IAtma atma = Minecraft.getMinecraft().player.getCapability(AtmaProvider.MAX_ATMA, null);
     	ICooldown cd = Minecraft.getMinecraft().player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
     	
