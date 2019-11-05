@@ -4,6 +4,7 @@ import hayden.atma_mod.capabilities.AtmaProvider;
 import hayden.atma_mod.capabilities.CooldownBaubleProvider;
 import hayden.atma_mod.capabilities.IAtma;
 import hayden.atma_mod.capabilities.ICooldown;
+import hayden.atma_mod.utils.handlers.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -35,6 +36,8 @@ public class DebugTool extends ItemBase
 		playerIn.sendMessage(new TextComponentString(""));
 		
 		playerIn.sendMessage(new TextComponentString("Cooldown " + String.valueOf(cd.getTicks()) + "/" + String.valueOf(cd.getMaxTicks())));
+		
+		Events.updatePlayerAtma(playerIn);
 					
 		((EntityPlayer)playerIn).getCooldownTracker().setCooldown(this, 5);
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, item);

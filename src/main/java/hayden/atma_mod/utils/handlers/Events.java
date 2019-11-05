@@ -143,14 +143,14 @@ public class Events
 		}
 	}
 		
-	@SubscribeEvent
-	public void updateClient(PlayerTickEvent event)
-	{
-		if(event.phase != Phase.END) return;
-		updatePlayerAtma(event.player);		
-	}
+//	@SubscribeEvent	
+//	public void updateClient(PlayerTickEvent event)
+//	{
+//		if(event.phase != Phase.END) return;
+//		updatePlayerAtma(event.player);		
+//	}
 	
-	private void updatePlayerAtma(EntityPlayer player) 
+	public static void updatePlayerAtma(EntityPlayer player) 
 	{
 		if(!player.world.isRemote) 
 		{

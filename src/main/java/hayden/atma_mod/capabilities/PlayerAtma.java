@@ -77,7 +77,8 @@ public class PlayerAtma implements IAtma, INBTSerializable<NBTTagCompound>
 	{
 		if(!player.getEntityWorld().isRemote) 
 		{
-			if(needsUpdate) CommonProxy.network.sendTo(new MessageUpdateClientAtma(this), (EntityPlayerMP)player);
+			if(needsUpdate) 
+				CommonProxy.network.sendTo(new MessageUpdateClientAtma(this), (EntityPlayerMP)player);
 			needsUpdate = false;
 		}
 	}
