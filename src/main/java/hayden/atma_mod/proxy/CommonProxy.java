@@ -1,8 +1,9 @@
 package hayden.atma_mod.proxy;
 
-import hayden.atma_mod.capabilities.PlayerAtma.MessageUpdateClientAtma;
+//import hayden.atma_mod.capabilities.PlayerAtma.MessageUpdateClientAtma;
 import hayden.atma_mod.items.ItemBase;
 import hayden.atma_mod.utils.Reference;
+import hayden.atma_mod.utils.handlers.PacketHandler;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -21,7 +22,6 @@ public class CommonProxy
 	
 	private void registerNetworkPackets() 
 	{
-		int id = 0;
-		network.registerMessage(MessageUpdateClientAtma.Handler.class, MessageUpdateClientAtma.class, id++, Side.CLIENT);
+		PacketHandler.init();
 	}
 }

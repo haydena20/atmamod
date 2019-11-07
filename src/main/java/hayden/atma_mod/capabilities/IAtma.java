@@ -1,6 +1,6 @@
 package hayden.atma_mod.capabilities;
 
-import hayden.atma_mod.capabilities.PlayerAtma.MessageUpdateClientAtma;
+//import hayden.atma_mod.capabilities.PlayerAtma.MessageUpdateClientAtma;
 import hayden.atma_mod.proxy.CommonProxy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
