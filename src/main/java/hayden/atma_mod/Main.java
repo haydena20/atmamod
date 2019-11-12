@@ -8,6 +8,7 @@ import hayden.atma_mod.utils.Reference;
 import hayden.atma_mod.utils.handlers.CapabilityHandler;
 import hayden.atma_mod.utils.handlers.Events;
 import hayden.atma_mod.utils.handlers.GuiRenderHandler;
+import hayden.atma_mod.utils.handlers.PacketHandler;
 import hayden.atma_mod.utils.handlers.RegistryHandler;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,11 +38,14 @@ public class Main
     	MinecraftForge.EVENT_BUS.register(new Events());
     	MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
     	ModCapabilities.registerCapabilities();
+    	PacketHandler.init();
+    	
     }    
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
     	ModRecipes.init();
+    	
     }
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)

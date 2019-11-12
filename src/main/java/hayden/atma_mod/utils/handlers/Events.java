@@ -153,8 +153,8 @@ public class Events
 		if(!player.world.isRemote) 
 		{
 //			IAtma mh = player.getCapability(AtmaProvider.MAX_ATMA, null);
-			
-			PacketHandler.INSTANCE.sendTo(new MyMessage(3), (EntityPlayerMP) player);
+			if(player instanceof EntityPlayerMP)
+				PacketHandler.INSTANCE.sendTo(new MyMessage(3), (EntityPlayerMP) player);
 //			mh.updateClient(player);
 		}
 	}

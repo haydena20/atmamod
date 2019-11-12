@@ -15,5 +15,6 @@ public class PacketHandler
 	{
 		int discrim = 0;
 		INSTANCE.registerMessage(MessageHandler.class, MyMessage.class, discrim++, Side.CLIENT);
+//		INSTANCE.registerMessage(MessageHandler.class, MyMessage.class, discrim++, Side.SERVER);
 	}
 }
