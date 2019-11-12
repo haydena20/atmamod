@@ -8,6 +8,7 @@ import hayden.atma_mod.capabilities.ICooldown;
 import hayden.atma_mod.init.ModItems;
 import hayden.atma_mod.items.AtmaCoil;
 import hayden.atma_mod.items.ItemBase;
+import hayden.atma_mod.messages.MyMessage;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommand;
@@ -99,14 +100,11 @@ public class Events
 		if(charmcd.getTicks() < charmcd.getMaxTicks());
 			charmcd.addTicks();
 		
-//		if(player.getEntityWorld().canBlockSeeSky(player.getPosition()) && player.getEntityWorld().isDaytime() && (atma.getAtma() < atma.getMaxAtma()))
-//			atma.addAtma(1F);
+		if(player.getEntityWorld().canBlockSeeSky(player.getPosition()) && player.getEntityWorld().isDaytime() && (atma.getAtma() < atma.getMaxAtma()))
+			atma.addAtma(1F);
 		if(atma.getAtma() > atma.getMaxAtma())
 			atma.removeAtma(0.5F);
-		if(player.ticksExisted%39==0)
-		{
-//			player.sendMessage();
-		}
+		
 		
 //		Atma Overload Effects
 		
@@ -154,9 +152,10 @@ public class Events
 	{
 		if(!player.world.isRemote) 
 		{
-			IAtma mh = player.getCapability(AtmaProvider.MAX_ATMA, null);
-
-			mh.updateClient(player);
+//			IAtma mh = player.getCapability(AtmaProvider.MAX_ATMA, null);
+			
+			PacketHandler.INSTANCE.sendTo(new MyMessage(3), (EntityPlayerMP) player);
+//			mh.updateClient(player);
 		}
 	}
 	@SubscribeEvent
