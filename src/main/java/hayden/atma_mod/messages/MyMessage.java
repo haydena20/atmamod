@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -49,7 +50,8 @@ public class MyMessage implements IMessage
 			FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(()-> 
 			{
 //				ctx.getServerHandler().player.inventory.addItemStackToInventory(new ItemStack(Items.DIAMOND, amount));
-				System.out.println("yuh yeet");
+				System.out.println(amount);
+				
 			});
 
 							 
