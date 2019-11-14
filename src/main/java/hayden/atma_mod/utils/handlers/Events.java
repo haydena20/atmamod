@@ -52,6 +52,9 @@ public class Events
 		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
 		ICooldown charmcd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
 		
+		if(player.world.isRemote)
+			return;
+		
 		if(!(BaublesApi.isBaubleEquipped(player, ModItems.ATMACOIL) == -1) && charmcd.getTicks() >= charmcd.getMaxTicks())
 		{
 			player.addPotionEffect(new PotionEffect(MobEffects.SPEED,60,1,false,false));
@@ -69,6 +72,9 @@ public class Events
 		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
 		ICooldown charmcd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
 		
+		if(player.world.isRemote)
+			return;
+		
 		if(!(BaublesApi.isBaubleEquipped(player, ModItems.ATMACOIL) == -1) && charmcd.getTicks() >= charmcd.getMaxTicks())
 		{
 			player.addPotionEffect(new PotionEffect(MobEffects.SPEED,60,1,false,false));
@@ -85,12 +91,15 @@ public class Events
 
 	
 	@SubscribeEvent
-	public void perPlayerTick(PlayerTickEvent event)
+	public void perPlayerTickServer(PlayerTickEvent event)
 	{		
 		EntityPlayer player = event.player;
 		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
 		ICooldown charmcd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
 				
+		if(player.world.isRemote)
+			return;
+		
 //		Checking and setting max Atma
 		
 		//Todo

@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -39,20 +40,21 @@ public class MyMessage implements IMessage
 
 		@Override public IMessage onMessage(MyMessage message, MessageContext ctx) 
 			{
-			 // This is the player the packet was sent to the server from
-			 EntityPlayerMP serverPlayer = ctx.getServerHandler().player;
+//			 This is the player the packet was sent to the server from
+//			EntityPlayerMP serverPlayer = ctx.getServerHandler().player;
+			// The value that was sent
+			int amount = message.toSend;
 			 
-			 // The value that was sent
-			 int amount = message.toSend;
-			 
-			 // Execute the action on the main server thread by adding it as a scheduled task
-			 serverPlayer.getServerWorld().addScheduledTask(() -> 
-			 {
-			   serverPlayer.inventory.addItemStackToInventory(new ItemStack(Items.DIAMOND, amount));
-			 });
-			 
-			 // No response packet
-			 return null;
+			// Execute the action on the main server thread by adding it as a scheduled task
+			FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(()-> 
+			{
+//				ctx.getServerHandler().player.inventory.addItemStackToInventory(new ItemStack(Items.DIAMOND, amount));
+				System.out.println("yuh yeet");
+			});
+
+							 
+			// No response packet
+			return null;
 			}
 	}
 }

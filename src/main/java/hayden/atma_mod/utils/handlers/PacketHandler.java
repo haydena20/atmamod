@@ -13,7 +13,7 @@ public class PacketHandler
 	
 	public static void init()
 	{
-		int discrim = 0;
+		int discrim = 1;
 		INSTANCE.registerMessage(MessageHandler.class, MyMessage.class, discrim++, Side.CLIENT);
 //		INSTANCE.registerMessage(MessageHandler.class, MyMessage.class, discrim++, Side.SERVER);
 	}
