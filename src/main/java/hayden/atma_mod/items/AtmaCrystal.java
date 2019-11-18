@@ -2,6 +2,7 @@ package hayden.atma_mod.items;
 
 import hayden.atma_mod.capabilities.AtmaProvider;
 import hayden.atma_mod.capabilities.IAtma;
+import hayden.atma_mod.utils.handlers.Events;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -39,6 +40,7 @@ public class AtmaCrystal extends ItemBase
 			item.damageItem((item.getMaxDamage()/10)-1, playerIn);
 			atma.addAtma((item.getMaxDamage()/10));
 			((EntityPlayer)playerIn).getCooldownTracker().setCooldown(this, 5);
+			Events.updatePlayerAtma((EntityPlayer) playerIn);
 		}
 			
 			

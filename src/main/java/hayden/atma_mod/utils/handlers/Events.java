@@ -168,8 +168,7 @@ public class Events
 		{
 			IAtma mh = player.getCapability(AtmaProvider.MAX_ATMA, null);
 			if(player instanceof EntityPlayerMP)
-				PacketHandler.INSTANCE.sendTo(new MyMessage((int)mh.getAtma()), (EntityPlayerMP) player);
-			mh.updateClient(player);
+				mh.updateClient(player);
 		}
 	}
 	

@@ -1,6 +1,10 @@
 package hayden.atma_mod.messages;
 
+import hayden.atma_mod.capabilities.IAtma;
+import hayden.atma_mod.capabilities.PlayerAtma;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -39,6 +43,8 @@ public class MyMessage implements IMessage
 	{
 		//Do note that the default constructor is required, but implicitly defined in this case
 
+		//https://www.minecraftforge.net/forum/topic/41186-110-packetcapability-issues-solved/
+		
 		@Override public IMessage onMessage(MyMessage message, MessageContext ctx) 
 			{
 //			 This is the player the packet was sent to the server from
@@ -47,13 +53,19 @@ public class MyMessage implements IMessage
 			int amount = message.toSend;
 			 
 			// Execute the action on the main server thread by adding it as a scheduled task
-			FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(()-> 
+//			FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(()-> 
+//			{
+////				ctx.getServerHandler().player.inventory.addItemStackToInventory(new ItemStack(Items.DIAMOND, amount));
+//				System.out.println(amount);
+//				
+//			});
+			Minecraft.getMinecraft().addScheduledTask(() -> 
 			{
-//				ctx.getServerHandler().player.inventory.addItemStackToInventory(new ItemStack(Items.DIAMOND, amount));
-				System.out.println(amount);
-				System.out.println(ctx.getClientHandler().getGameProfile().getName());
+				EntityPlayer player = Minecraft.getMinecraft().player;
+				IAtma atma = PlayerAtma.instanceFor(player);
+				
+				atma.setAtma(amount);
 			});
-
 							 
 			// No response packet
 			return null;

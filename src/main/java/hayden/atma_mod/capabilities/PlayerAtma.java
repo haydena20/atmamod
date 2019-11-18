@@ -1,6 +1,8 @@
 package hayden.atma_mod.capabilities;
 
+import hayden.atma_mod.messages.MyMessage;
 import hayden.atma_mod.proxy.CommonProxy;
+import hayden.atma_mod.utils.handlers.PacketHandler;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -77,7 +79,7 @@ public class PlayerAtma implements IAtma, INBTSerializable<NBTTagCompound>
 	{
 		if(!player.getEntityWorld().isRemote) 
 		{
-//			CommonProxy.network.sendTo(new , (EntityPlayerMP)player);
+			PacketHandler.INSTANCE.sendTo(new MyMessage((int)this.getAtma()), (EntityPlayerMP) player);
 		}
 	}
 	
