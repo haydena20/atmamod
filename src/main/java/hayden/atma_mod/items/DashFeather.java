@@ -11,6 +11,7 @@ import hayden.atma_mod.capabilities.AtmaProvider;
 import hayden.atma_mod.capabilities.CooldownBaubleProvider;
 import hayden.atma_mod.capabilities.IAtma;
 import hayden.atma_mod.capabilities.ICooldown;
+import hayden.atma_mod.utils.handlers.Events;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -93,19 +94,21 @@ public class DashFeather extends ItemBase implements IBauble
 		ICooldown cd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
 		Vec3d aim = player.getLookVec();
 		
-		if(player.world.isRemote)
-			return;
+//		if(player.world.isRemote)
+//			return;
 		
 		cd.setMaxTicks(100.0F);
 		
 		if (Keyboard.isKeyDown(jump) && (player.fallDistance > 0) && !player.isInWater() && (cd.getTicks() >= cd.getMaxTicks())) 
 		{
-//			if(!player.isElytraFlying())
-//				player.setVelocity(0, 0, 0);
+			if(!player.isElytraFlying())
+				player.setVelocity(0, 0, 0);
 			
 			player.addVelocity(aim.x * 1.1, aim.y * 1.2, aim.z * 1.1);
 			player.fallDistance = -999;
 			
+			Events.updatePlayerAtma((EntityPlayer) player);
+
 			atma.removeAtma(300.0F);
 			itemstack.damageItem(1, player);	
 			cd.setTicks(0);

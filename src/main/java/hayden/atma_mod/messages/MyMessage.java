@@ -51,7 +51,7 @@ public class MyMessage implements IMessage
 			{
 //				ctx.getServerHandler().player.inventory.addItemStackToInventory(new ItemStack(Items.DIAMOND, amount));
 				System.out.println(amount);
-				
+				System.out.println(ctx.getClientHandler().getGameProfile().getName());
 			});
 
 							 

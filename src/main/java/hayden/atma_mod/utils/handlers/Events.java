@@ -97,8 +97,6 @@ public class Events
 		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
 		ICooldown charmcd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
 				
-		if(player.world.isRemote)
-			return;
 		
 //		Checking and setting max Atma
 		
@@ -108,12 +106,19 @@ public class Events
 		
 		if(charmcd.getTicks() < charmcd.getMaxTicks());
 			charmcd.addTicks();
-		
+			
+		if(player.ticksExisted%40==0)
+			Events.updatePlayerAtma((EntityPlayer) player);
+			
+			//Anything below this line runs exclusively on the server
+			if(player.world.isRemote)
+				return;
+			
+			
 		if(player.getEntityWorld().canBlockSeeSky(player.getPosition()) && player.getEntityWorld().isDaytime() && (atma.getAtma() < atma.getMaxAtma()))
 			atma.addAtma(1F);
 		if(atma.getAtma() > atma.getMaxAtma())
 			atma.removeAtma(0.5F);
-		
 		
 //		Atma Overload Effects
 		
@@ -164,9 +169,10 @@ public class Events
 			IAtma mh = player.getCapability(AtmaProvider.MAX_ATMA, null);
 			if(player instanceof EntityPlayerMP)
 				PacketHandler.INSTANCE.sendTo(new MyMessage((int)mh.getAtma()), (EntityPlayerMP) player);
-//			mh.updateClient(player);
+			mh.updateClient(player);
 		}
 	}
+	
 	@SubscribeEvent
 	public void onPlayerLogsIn(PlayerLoggedInEvent event)
 	{
