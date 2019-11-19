@@ -52,14 +52,16 @@ public class Events
 		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
 		ICooldown charmcd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
 		
-		if(player.world.isRemote)
-			return;
+//		if(player.world.isRemote)
+//			return;
 		
 		if(!(BaublesApi.isBaubleEquipped(player, ModItems.ATMACOIL) == -1) && charmcd.getTicks() >= charmcd.getMaxTicks())
 		{
 			player.addPotionEffect(new PotionEffect(MobEffects.SPEED,60,1,false,false));
 			atma.addAtma(500);
 			charmcd.setTicks(0);
+			
+			Events.updatePlayerAtma((EntityPlayer) player);
 		}
 		//Explosion explosion = new Explosion(event.getTarget().world, event.getEntityPlayer(), event.getTarget().posX, event.getTarget().posY, event.getTarget().posZ, 3.0F, false, false);
 		//explosion.doExplosionB(true);
@@ -72,14 +74,16 @@ public class Events
 		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
 		ICooldown charmcd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
 		
-		if(player.world.isRemote)
-			return;
+//		if(player.world.isRemote)
+//			return;
 		
 		if(!(BaublesApi.isBaubleEquipped(player, ModItems.ATMACOIL) == -1) && charmcd.getTicks() >= charmcd.getMaxTicks())
 		{
 			player.addPotionEffect(new PotionEffect(MobEffects.SPEED,60,1,false,false));
 			atma.addAtma(500);
 			charmcd.setTicks(0);
+			
+			Events.updatePlayerAtma((EntityPlayer) player);
 		}
 				
 		
@@ -87,9 +91,7 @@ public class Events
 		//explosion.doExplosionB(true);
 		//explosion.doExplosionA();
 	}
-	
 
-	
 	@SubscribeEvent
 	public void perPlayerTickServer(PlayerTickEvent event)
 	{		
@@ -107,52 +109,65 @@ public class Events
 		if(charmcd.getTicks() < charmcd.getMaxTicks());
 			charmcd.addTicks();
 			
-		if(player.ticksExisted%40==0)
-			Events.updatePlayerAtma((EntityPlayer) player);
+//		if(player.ticksExisted%40==0)
+//			Events.updatePlayerAtma((EntityPlayer) player);
 			
 			//Anything below this line runs exclusively on the server
 			if(player.world.isRemote)
 				return;
 			
 			
-		if(player.getEntityWorld().canBlockSeeSky(player.getPosition()) && player.getEntityWorld().isDaytime() && (atma.getAtma() < atma.getMaxAtma()))
-			atma.addAtma(1F);
-		if(atma.getAtma() > atma.getMaxAtma())
-			atma.removeAtma(0.5F);
-		
-//		Atma Overload Effects
-		
-		if(atma.getAtma() > atma.getMaxAtma())
+		if(player.ticksExisted%60==0)
 		{
-			player.removePotionEffect(MobEffects.FIRE_RESISTANCE);
-			player.setFire(1);
-		}
-		
-//		Negative Atma Effects
-		
-		if(atma.getAtma() < 0.0F && player.ticksExisted%39==0) 
-		{
-			atma.removeAtma(0.5F);
-			player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,40,0,true,true));
-			//player.addPotionEffect(new PotionEffect(MobEffects.WITHER,40,0,true,true));
-			player.removePotionEffect(MobEffects.HEALTH_BOOST);
-			player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,40,-2,false,false));
-			if(atma.getAtma() < -1000 && player.ticksExisted%39==0)
+			
+//			Atma Sunlight Gain (Friendly increase; will never go above max)
+			if(player.getEntityWorld().canBlockSeeSky(player.getPosition()) && player.getEntityWorld().isDaytime() && (atma.getAtma() < atma.getMaxAtma()))
 			{
-				player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,40,1,true,true));
-				//player.addPotionEffect(new PotionEffect(MobEffects.WITHER,40,1,true,true));
-				player.removePotionEffect(MobEffects.HEALTH_BOOST);
-				player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,40,-4,false,false));
-				if(atma.getAtma() < -2000 && player.ticksExisted%39==0)
-				{
-					//player.addPotionEffect(new PotionEffect(MobEffects.WITHER,40,6,true,true));
-					player.removePotionEffect(MobEffects.HEALTH_BOOST);
-					player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,40,-5,false,false));
-					player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,80,0,false,false));
-				}
-					
+				if((atma.getAtma()+50 > atma.getMaxAtma()) && (atma.getAtma()+50 < atma.getMaxAtma()+50))
+					atma.setAtma(atma.getMaxAtma());
+				
+				atma.addAtma(50F);
 			}
+			
+//			Atma Overload, ignites when above max
+			if(atma.getAtma() > atma.getMaxAtma())
+			{
+				player.removePotionEffect(MobEffects.FIRE_RESISTANCE);
+				player.setFire(60);
+			}
+			
+//			Negative Atma Effects, causes debuffs and 'corruption' (negative atma regen)
+			if(atma.getAtma() < 0.0F && atma.getAtma() > -1000.0F) 
+			{
+				atma.removeAtma(20F);
+				player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,60,0,true,true));
+				player.removePotionEffect(MobEffects.HEALTH_BOOST);
+				player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,60,-1,false,false));
+			}
+			else if(atma.getAtma() <= -1000.0F && atma.getAtma() > -2000.0F)
+			{
+				atma.removeAtma(30F);
+				player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,60,1,true,true));
+				player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,60,1,true,true));
+				player.removePotionEffect(MobEffects.HEALTH_BOOST);
+				player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,60,-3,false,false));
+			}
+			else if(atma.getAtma() <= -2000.0F)
+			{
+				atma.removeAtma(40F);
+				player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,60,2,true,true));
+				player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,60,2,true,true));
+				player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,100,0,false,false));
+				player.removePotionEffect(MobEffects.HEALTH_BOOST);
+				player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,60,-5,false,false));
+			}
+			
+			Events.updatePlayerAtma((EntityPlayer) player);
 		}
+
+
+		
+
 	}
 		
 //	@SubscribeEvent	
@@ -175,15 +190,14 @@ public class Events
 	@SubscribeEvent
 	public void onPlayerLogsIn(PlayerLoggedInEvent event)
 	{
-
+		Events.updatePlayerAtma((EntityPlayer) event.player);
 	}
 	@SubscribeEvent
 	public void onPlayerClone(PlayerEvent.PlayerRespawnEvent event)
 	{
-//		EntityPlayer player = event.player;
-//		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
-//		IAtma oldAtma = event.getOriginal().getCapability(AtmaProvider.MAX_ATMA, null);
-//
-//		atma.setAtma(oldAtma.getAtma());
+		IAtma atma = event.player.getCapability(AtmaProvider.MAX_ATMA, null);
+		atma.setAtma(0F);
+		
+		Events.updatePlayerAtma((EntityPlayer) event.player);
 	}
 }
