@@ -12,6 +12,8 @@ public class PlayerAtmaGauge extends Gui
 		int width = scaled.getScaledWidth();
 		int height = scaled.getScaledHeight();
 		
+		
+		
 		drawCenteredString(mc.fontRenderer, (int)min/10 + "/" + (int)max/10, width / 2, (height / 5) - 4, Integer.parseInt("FFAA00", 16));
 	}
 }

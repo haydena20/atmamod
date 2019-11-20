@@ -18,7 +18,9 @@ public class PlayerAtma implements IAtma, INBTSerializable<NBTTagCompound>
 	
 	private float currentAtma = 0.0F;
 	private float maxAtma = 10000.0F;
-	private boolean needsUpdate = true;
+	
+	private float atmaEff = 0.0F;
+	private float atmaBoost = 0.0F;
 	
 	@Override
 	public float getAtma() 
@@ -29,13 +31,13 @@ public class PlayerAtma implements IAtma, INBTSerializable<NBTTagCompound>
 	@Override
 	public void addAtma(float amount) 
 	{
-		this.currentAtma += amount;
+		this.currentAtma += amount + (amount*(this.atmaBoost/100));
 	}
 
 	@Override
 	public void removeAtma(float amount) 
 	{	
-		this.currentAtma -= amount;
+		this.currentAtma -= amount - (amount*(this.atmaEff/100));
 	}
 
 	@Override
@@ -81,6 +83,30 @@ public class PlayerAtma implements IAtma, INBTSerializable<NBTTagCompound>
 		{
 			PacketHandler.INSTANCE.sendTo(new MyMessage((int)this.getAtma()), (EntityPlayerMP) player);
 		}
+	}
+
+	@Override
+	public float getAtmaEff() 
+	{
+		return this.atmaEff;
+	}
+
+	@Override
+	public void setAtmaEff(float amount) 
+	{
+		this.atmaEff = amount;
+	}
+
+	@Override
+	public float getAtmaBoost() 
+	{
+		return this.atmaBoost;
+	}
+
+	@Override
+	public void setAtmaBoost(float amount) 
+	{
+		this.atmaBoost = amount;
 	}
 	
 	
