@@ -123,7 +123,7 @@ public class Events
 //			Atma Sunlight Gain (Friendly increase; will never go above max)
 			if(player.getEntityWorld().canBlockSeeSky(player.getPosition()) && player.getEntityWorld().isDaytime() && (atma.getAtma() < atma.getMaxAtma()))
 			{
-				if((atma.getAtma()+50 > atma.getMaxAtma()) && (atma.getAtma()+50 < atma.getMaxAtma()+50))
+				if((atma.getAtma()+500 > atma.getMaxAtma()) && (atma.getAtma()+500 < atma.getMaxAtma()+500))
 					atma.setAtma(atma.getMaxAtma());
 				
 				atma.addAtma(50F);
@@ -186,6 +186,7 @@ public class Events
 				mh.updateClient(player);
 		}
 	}
+	
 	
 	@SubscribeEvent
 	public void onPlayerLogsIn(PlayerLoggedInEvent event)

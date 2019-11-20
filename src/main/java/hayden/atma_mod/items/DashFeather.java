@@ -13,6 +13,8 @@ import hayden.atma_mod.capabilities.IAtma;
 import hayden.atma_mod.capabilities.ICooldown;
 import hayden.atma_mod.utils.handlers.Events;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,8 +26,10 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class DashFeather extends ItemBase implements IBauble
@@ -106,7 +110,10 @@ public class DashFeather extends ItemBase implements IBauble
 			
 			player.addVelocity(aim.x * 1.1, aim.y * 1.2, aim.z * 1.1);
 			player.fallDistance = -999;
-
+			
+			player.playSound(SoundEvents.ENTITY_ENDERDRAGON_FLAP, 1, 2);
+//			player.playSound(SoundEvents.ENTITY_FIREWORK_LAUNCH, 1, 2);
+			
 			atma.removeAtma(300.0F);
 			itemstack.damageItem(1, player);	
 			cd.setTicks(0);

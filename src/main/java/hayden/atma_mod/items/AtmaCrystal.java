@@ -37,9 +37,12 @@ public class AtmaCrystal extends ItemBase
 		}
 		else
 		{
+			if(item.getDisplayName().contains("Drained"))
+				item.setStackDisplayName(item.getDisplayName().substring(7));
+			
 			item.damageItem((item.getMaxDamage()/10)-1, playerIn);
 			atma.addAtma((item.getMaxDamage()/10));
-			((EntityPlayer)playerIn).getCooldownTracker().setCooldown(this, 5);
+			((EntityPlayer)playerIn).getCooldownTracker().setCooldown(this, 40);
 			Events.updatePlayerAtma((EntityPlayer) playerIn);
 		}
 			
