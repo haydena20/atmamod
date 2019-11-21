@@ -117,16 +117,16 @@ public class Events
 				return;
 			
 			
-		if(player.ticksExisted%60==0)
+		if(player.ticksExisted%30==0)
 		{
 			
 //			Atma Sunlight Gain (Friendly increase; will never go above max)
 			if(player.getEntityWorld().canBlockSeeSky(player.getPosition()) && player.getEntityWorld().isDaytime() && (atma.getAtma() < atma.getMaxAtma()))
 			{
+				atma.addAtma(50F);
 				if((atma.getAtma()+500 > atma.getMaxAtma()) && (atma.getAtma()+500 < atma.getMaxAtma()+500))
 					atma.setAtma(atma.getMaxAtma());
-				
-				atma.addAtma(50F);
+
 			}
 			
 //			Atma Overload, ignites when above max
