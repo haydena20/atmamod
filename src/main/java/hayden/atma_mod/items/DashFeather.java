@@ -108,13 +108,13 @@ public class DashFeather extends ItemBase implements IBauble
 			if(!player.isElytraFlying())
 				player.setVelocity(0, 0, 0);
 			
-			player.addVelocity(aim.x * 1.1, aim.y * 1.2, aim.z * 1.1);
+			player.addVelocity(aim.x * 1.08, aim.y * 1.16, aim.z * 1.08);
 			player.fallDistance = -999;
 			
-			player.playSound(SoundEvents.ENTITY_ENDERDRAGON_FLAP, 1, 2);
-//			player.playSound(SoundEvents.ENTITY_FIREWORK_LAUNCH, 1, 2);
+//			player.playSound(SoundEvents.ENTITY_ENDERDRAGON_FLAP, 1, 2);
+			player.playSound(SoundEvents.ENTITY_FIREWORK_LAUNCH, 1, 1);
 			
-			atma.removeAtma(300.0F);
+			atma.removeAtma(800.0F);
 			itemstack.damageItem(1, player);	
 			cd.setTicks(0);
 			
