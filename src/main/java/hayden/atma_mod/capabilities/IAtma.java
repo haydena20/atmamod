@@ -22,5 +22,8 @@ public interface IAtma
 	public float getAtmaBoost();
 	public void setAtmaBoost(float amount);
 	
+	void setMaxBoost(float amount);
+	float getMaxBoost();
+	
 	public void updateClient(EntityPlayer player);
 }

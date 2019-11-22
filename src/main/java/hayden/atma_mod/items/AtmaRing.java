@@ -25,26 +25,43 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod.EventBusSubscriber
-public class Blindfold extends ItemBase implements IBauble
+public class AtmaRing extends ItemBase implements IBauble
 {
 
+	private float maxBoost = 0.0F;
+	private float effBoost = 0.0F;
+	private float gainBoost = 0.0F;
 	
-	
-	public Blindfold(String name)
+	public AtmaRing(String name, float maxBoost, float effBoost, float gainBoost)
 	{
 		super(name);
 		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
 		this.setMaxDamage(0);
 		this.setCreativeTab(CreativeTabs.TOOLS);
+		this.effBoost = effBoost;
+		this.maxBoost = maxBoost;
+		this.gainBoost = gainBoost;
 	}
 
+	public float getEffBoost()
+	{
+		return this.effBoost;
+	}
 
-
+	public float getMaxBoost()
+	{
+		return this.maxBoost;
+	}
+	
+	public float getGainBoost()
+	{
+		return this.gainBoost;
+	}
 
 	@Override
 	public BaubleType getBaubleType(ItemStack itemstack) {
-		return BaubleType.HEAD;
+		return BaubleType.RING;
 	}
 
 	@Override
@@ -66,8 +83,9 @@ public class Blindfold extends ItemBase implements IBauble
 
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
-		if (itemstack.getItemDamage()==0) {
-			player.removePotionEffect(MobEffects.BLINDNESS);
+		if (itemstack.getItemDamage()==0) 
+		{
+			
 		}
 	}
 

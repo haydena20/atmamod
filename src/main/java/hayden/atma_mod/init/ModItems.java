@@ -5,6 +5,7 @@ import java.util.List;
 
 import hayden.atma_mod.items.AtmaCoil;
 import hayden.atma_mod.items.AtmaCrystal;
+import hayden.atma_mod.items.AtmaRing;
 import hayden.atma_mod.items.Blindfold;
 import hayden.atma_mod.items.DashFeather;
 import hayden.atma_mod.items.DebugTool;
@@ -28,7 +29,9 @@ public class ModItems
 	public static final Blindfold BLINDFOLD = new Blindfold("blindfold");
 	public static final AtmaCoil ATMACOIL = new AtmaCoil("atma_coil");
 	
-	public static final Item BASEBALLBAT = new ItemBase("bat");
+	public static final AtmaRing MINORATMARING = new AtmaRing("atma_ring", 25F, 0F, 0F);
+	
+//	public static final Item BASEBALLBAT = new ItemBase("bat");
 	
 	
 	//materials

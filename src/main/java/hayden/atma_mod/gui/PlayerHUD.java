@@ -28,20 +28,37 @@ public class PlayerHUD extends Gui
 //			else
 //				drawCenteredString(mc.fontRenderer, (int)minA/10 + "/" + (int)maxA/10, width / 2, (height / 5) - 4, Integer.parseInt("FF0000", 16));
 			
-		int uiWidth = (width / 4) + 8;
+		int uiWidth = width - 6;
+		int barHeight = height;
 		
-		for(int i = (int) (maxA/250); i > 0; i--)
+		for(int i = barHeight; i > 0; i--)
 			drawString(mc.fontRenderer, "_", uiWidth, (height - 8) - i, Integer.parseInt("FF0000", 16));
+		
+		
 		
 		if(!(minA<0))
 			{
-				for(int i = (int) (minA/250); i > 0; i--)
-					drawString(mc.fontRenderer, "_", uiWidth, (height - 8) - i, Integer.parseInt("FFAA00", 16));
+				if(!(minA > maxA))
+				{
+					for(int i = (int) (barHeight * (minA/maxA)); i > 0; i--)
+						drawString(mc.fontRenderer, "_", uiWidth, (height - 8) - i, Integer.parseInt("FFAA00", 16));
+					
+					drawCenteredString(mc.fontRenderer,(int) ((minA/maxA)*100) + "%", uiWidth - 15, (height - 10), Integer.parseInt("FFAA00", 16));
+				}
+				else
+				{
+					for(int i = barHeight; i > 0; i--)
+						drawString(mc.fontRenderer, "_", (int) (uiWidth + Math.random() - (Math.random()*-1)), (height - 8) - i, Integer.parseInt("FFAA00", 16));
+					
+					drawCenteredString(mc.fontRenderer,(int) ((minA/maxA)*100) + "%", (int) ((uiWidth + Math.random() - (Math.random()*-1)) - 15), (height - 10), Integer.parseInt("FFAA00", 16));
+				}
 			}
 			else
 			{
-				for(int i = (int) Math.abs((minA/250)); i > 0; i--)
-					drawString(mc.fontRenderer, "_", uiWidth, (height - 8) - i, Integer.parseInt("FFFFFF", 16));
+				for(int i = (int) (barHeight * Math.abs(minA/maxA)); i > 0; i--)
+					drawString(mc.fontRenderer, "_", (int) (uiWidth + Math.random() - (Math.random()*-1)), (height - 8) - i, Integer.parseInt("FFFFFF", 16));
+				
+				drawCenteredString(mc.fontRenderer,(int) ((minA/maxA)*100) + "%", (int)(uiWidth - 15 - (Math.random() - (Math.random()*-1))), (height - 10), Integer.parseInt("FFFFFF", 16));
 			}
 		
 //		drawString(mc.fontRenderer, maxBrackets.toString(), width / 2, (height / 5) - 4, Integer.parseInt("FF0000", 16));

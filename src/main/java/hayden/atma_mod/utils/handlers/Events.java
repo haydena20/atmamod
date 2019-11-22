@@ -7,6 +7,7 @@ import hayden.atma_mod.capabilities.IAtma;
 import hayden.atma_mod.capabilities.ICooldown;
 import hayden.atma_mod.init.ModItems;
 import hayden.atma_mod.items.AtmaCoil;
+import hayden.atma_mod.items.AtmaRing;
 import hayden.atma_mod.items.ItemBase;
 import hayden.atma_mod.messages.MyMessage;
 import net.minecraft.block.Block;
@@ -19,6 +20,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -109,6 +111,20 @@ public class Events
 		if(charmcd.getTicks() < charmcd.getMaxTicks());
 			charmcd.addTicks();
 			
+		float maxBoost = 0;
+		float effBoost = 0;
+		float gainBoost = 0;
+		for(int i = 0; i < 7; i++)
+			if(BaublesApi.getBaublesHandler(player).getStackInSlot(i).getItem() instanceof AtmaRing)
+			{
+				maxBoost += ((AtmaRing) BaublesApi.getBaublesHandler(player).getStackInSlot(i).getItem()).getMaxBoost();
+				effBoost += ((AtmaRing) BaublesApi.getBaublesHandler(player).getStackInSlot(i).getItem()).getEffBoost();
+				gainBoost += ((AtmaRing) BaublesApi.getBaublesHandler(player).getStackInSlot(i).getItem()).getGainBoost();
+			}
+		atma.setMaxBoost(maxBoost);
+		atma.setAtmaEff(effBoost);
+		atma.setAtmaBoost(gainBoost);
+			
 //		if(player.ticksExisted%40==0)
 //			Events.updatePlayerAtma((EntityPlayer) player);
 			
@@ -137,30 +153,33 @@ public class Events
 			}
 			
 //			Negative Atma Effects, causes debuffs and 'corruption' (negative atma regen)
-			if(atma.getAtma() < 0.0F && atma.getAtma() > -1000.0F) 
+			if(atma.getAtma() < 0.0F) 
 			{
-				atma.removeAtma(20F);
-				player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,60,0,true,true));
+				atma.removeAtma((float) Math.abs(atma.getAtma() * 0.02));
+				player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,60,(int) Math.abs(atma.getAtma() * 0.001),true,true));
 				player.removePotionEffect(MobEffects.HEALTH_BOOST);
-				player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,60,-1,false,false));
+				player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,60,(int)(atma.getAtma() * 0.0005)-1,false,false));
+				
+				if(atma.getAtma() < atma.getMaxAtma()*-1)
+					player.onKillCommand();
 			}
-			else if(atma.getAtma() <= -1000.0F && atma.getAtma() > -2000.0F)
-			{
-				atma.removeAtma(30F);
-				player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,60,1,true,true));
-				player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,60,1,true,true));
-				player.removePotionEffect(MobEffects.HEALTH_BOOST);
-				player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,60,-3,false,false));
-			}
-			else if(atma.getAtma() <= -2000.0F)
-			{
-				atma.removeAtma(40F);
-				player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,60,2,true,true));
-				player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,60,2,true,true));
-				player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,100,0,false,false));
-				player.removePotionEffect(MobEffects.HEALTH_BOOST);
-				player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,60,-5,false,false));
-			}
+//			else if(atma.getAtma() <= -1000.0F && atma.getAtma() > -2000.0F)
+//			{
+//				atma.removeAtma(30F);
+//				player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,60,1,true,true));
+//				player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,60,1,true,true));
+//				player.removePotionEffect(MobEffects.HEALTH_BOOST);
+//				player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,60,-3,false,false));
+//			}
+//			else if(atma.getAtma() <= -2000.0F)
+//			{
+//				atma.removeAtma(40F);
+//				player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,60,2,true,true));
+//				player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,60,2,true,true));
+//				player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,100,0,false,false));
+//				player.removePotionEffect(MobEffects.HEALTH_BOOST);
+//				player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST,60,-5,false,false));
+//			}
 			
 			Events.updatePlayerAtma((EntityPlayer) player);
 		}

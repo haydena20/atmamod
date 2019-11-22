@@ -21,6 +21,7 @@ public class PlayerAtma implements IAtma, INBTSerializable<NBTTagCompound>
 	
 	private float atmaEff = 0.0F;
 	private float atmaBoost = 0.0F;
+	private float maxBoost = 0.0F;
 	
 	@Override
 	public float getAtma() 
@@ -49,7 +50,7 @@ public class PlayerAtma implements IAtma, INBTSerializable<NBTTagCompound>
 		@Override
 	public float getMaxAtma() 
 	{
-		return this.maxAtma;
+		return this.maxAtma + (this.maxAtma*(this.maxBoost/100));
 	}
 
 	@Override
@@ -109,5 +110,16 @@ public class PlayerAtma implements IAtma, INBTSerializable<NBTTagCompound>
 		this.atmaBoost = amount;
 	}
 	
+	@Override
+	public void setMaxBoost(float amount)
+	{
+		this.maxBoost = amount;
+	}
+	
+	@Override
+	public float getMaxBoost()
+	{
+		return this.maxBoost;
+	}
 	
 }
