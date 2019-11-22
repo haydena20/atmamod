@@ -79,7 +79,7 @@ public class Events
 //		if(player.world.isRemote)
 //			return;
 		
-		if(!(BaublesApi.isBaubleEquipped(player, ModItems.ATMACOIL) == -1) && charmcd.getTicks() >= charmcd.getMaxTicks())
+		if(!(BaublesApi.isBaubleEquipped(player, ModItems.ATMACOILBLOCK) == -1) && charmcd.getTicks() >= charmcd.getMaxTicks())
 		{
 			player.addPotionEffect(new PotionEffect(MobEffects.SPEED,60,1,false,false));
 			atma.addAtma(500);

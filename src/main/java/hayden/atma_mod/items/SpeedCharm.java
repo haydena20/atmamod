@@ -32,50 +32,22 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class DashFeather extends ItemBase implements IBauble
+public class SpeedCharm extends ItemBase implements IBauble
 {
 	
 	
-	public DashFeather(String name) 
+	public SpeedCharm(String name) 
 	{
 		super(name);
 		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
-		this.setMaxDamage(200);
+		this.setMaxDamage(1600);
 		this.setCreativeTab(CreativeTabs.TOOLS);
 	}
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
-	{
-//		ItemStack item = playerIn.getHeldItem(handIn);
-//		Vec3d aim = playerIn.getLookVec();
-		
-//		EntityFireball fireball = new Entity(worldIn, playerIn, 1, 1, 1);
-//		
-//		fireball.setPosition(playerIn.posX + aim.x * 1.5, playerIn.posY + 1 + aim.y * 1.5, playerIn.posZ + aim.z * 1.5);
-//		fireball.accelerationX = aim.x * 0.2;
-//		fireball.accelerationY = aim.y * 0.2;
-//		fireball.accelerationZ = aim.z * 0.2;
-//		
-//		worldIn.spawnEntity(fireball);
-//		
-//		item.damageItem(3, playerIn);
-		
-//		if(playerIn.isInWater())
-//			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, item);;
-//		
-//		playerIn.addVelocity(aim.x * 1.1, aim.y * 1.1, aim.z * 1.1);
-//		playerIn.fallDistance = -999;
-//		
-//		IAtma atma = playerIn.getCapability(AtmaProvider.MAX_ATMA, null);
-//		
-//		atma.removeAtma(450.0F);
-//		
-//		((EntityPlayer)playerIn).getCooldownTracker().setCooldown(this, 60);
-//		
-//		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, item);
-		
+	{		
 		if(!worldIn.isRemote) { 
 			IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(playerIn);
 			for(int i = 0; i < baubles.getSlots(); i++) 
@@ -93,30 +65,25 @@ public class DashFeather extends ItemBase implements IBauble
 
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) 
 	{
-		int jump = Minecraft.getMinecraft().gameSettings.keyBindJump.getKeyCode();
 		IAtma atma = player.getCapability(AtmaProvider.MAX_ATMA, null);
 		ICooldown cd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
 		Vec3d aim = player.getLookVec();
 		
-//		if(player.world.isRemote)
-//			return;
+		cd.setMaxTicks(500.0F);
 		
-		cd.setMaxTicks(100.0F);
-		
-		if (Keyboard.isKeyDown(jump) && (player.fallDistance > 0) && !player.isInWater() && (cd.getTicks() >= cd.getMaxTicks())) 
-		{
-			if(!player.isElytraFlying())
-				player.setVelocity(0, 0, 0);
+		if (player.isSprinting() && !(player.fallDistance > 0) && !player.isInWater() && (cd.getTicks() > 0)) 
+		{			
+			player.addVelocity(aim.x * (1.03 * cd.getTicks()/cd.getMaxTicks() + 0.005), 0, aim.z * (1.03 * cd.getTicks()/cd.getMaxTicks()) + 0.005);
 			
-			player.addVelocity(aim.x * 1.08, aim.y * 1.16, aim.z * 1.08);
-			player.fallDistance = -999;
+			player.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1, 2);
 			
-//			player.playSound(SoundEvents.ENTITY_ENDERDRAGON_FLAP, 1, 2);
-			player.playSound(SoundEvents.ENTITY_FIREWORK_LAUNCH, 1, 1);
-			
-			atma.removeAtma(1000.0F);
+			atma.removeAtma(75.0F);
 			itemstack.damageItem(1, player);	
-			cd.setTicks(0);
+			
+			if(cd.getTicks() > cd.getMaxTicks())
+				cd.setTicks(cd.getMaxTicks());
+			
+			cd.setTicks(cd.getTicks()-10);;
 			
 			Events.updatePlayerAtma((EntityPlayer) player);
 		}

@@ -27,10 +27,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod.EventBusSubscriber
-public class AtmaCoil extends ItemBase implements IBauble
+public class AtmaCoilBlock extends ItemBase implements IBauble
 {
 
-	public AtmaCoil(String name)
+	public AtmaCoilBlock(String name)
 	{
 		super(name);
 		this.setMaxStackSize(1);

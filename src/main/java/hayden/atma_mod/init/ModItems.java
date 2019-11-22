@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hayden.atma_mod.items.AtmaCoil;
+import hayden.atma_mod.items.AtmaCoilBlock;
 import hayden.atma_mod.items.AtmaCrystal;
 import hayden.atma_mod.items.AtmaRing;
+import hayden.atma_mod.items.AtmaVisor;
 import hayden.atma_mod.items.Blindfold;
 import hayden.atma_mod.items.DashFeather;
 import hayden.atma_mod.items.DebugTool;
 import hayden.atma_mod.items.ItemBase;
+import hayden.atma_mod.items.SpeedCharm;
 import net.minecraft.item.Item;
 
 public class ModItems 
@@ -26,10 +29,14 @@ public class ModItems
 //	Baubles
 	
 	public static final DashFeather DASHFEATHER = new DashFeather("dash_feather");
+	public static final SpeedCharm SPEEDCHARM =  new SpeedCharm("speed_charm");
+	
 	public static final Blindfold BLINDFOLD = new Blindfold("blindfold");
 	public static final AtmaCoil ATMACOIL = new AtmaCoil("atma_coil");
+	public static final AtmaCoilBlock ATMACOILBLOCK = new AtmaCoilBlock("atma_coil_block");
 	
 	public static final AtmaRing MINORATMARING = new AtmaRing("atma_ring", 25F, 0F, 0F);
+	public static final AtmaVisor CRUDEVISOR = new AtmaVisor("crude_visor", 25F, 5F, 0F);
 	
 //	public static final Item BASEBALLBAT = new ItemBase("bat");
 	

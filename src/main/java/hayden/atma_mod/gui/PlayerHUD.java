@@ -2,6 +2,8 @@ package hayden.atma_mod.gui;
 
 import java.awt.Color;
 
+import baubles.api.BaublesApi;
+import hayden.atma_mod.items.AtmaVisor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
@@ -28,6 +30,10 @@ public class PlayerHUD extends Gui
 //			else
 //				drawCenteredString(mc.fontRenderer, (int)minA/10 + "/" + (int)maxA/10, width / 2, (height / 5) - 4, Integer.parseInt("FF0000", 16));
 			
+		
+		if(!(BaublesApi.getBaublesHandler(mc.player).getStackInSlot(4).getItem() instanceof AtmaVisor))
+			return;
+		
 		int uiWidth = width - 6;
 		int barHeight = height;
 		
@@ -72,7 +78,9 @@ public class PlayerHUD extends Gui
 //				drawString(mc.fontRenderer, currentMarkers.toString(), width / 2, (height / 5) - 4, Integer.parseInt("FFFFFF", 16));
 //			}
 				
-			
+		for(int i = (int) (barHeight * (minCd/maxCd)); i > 0; i--)
+			drawString(mc.fontRenderer, ".", uiWidth-6, (height - 8) - i, Integer.parseInt("FFFFFF", 16));
+		
 			if(!(minCd >= maxCd))
 				drawCenteredString(mc.fontRenderer, (int)minCd + "/" + (int)maxCd, width / 2, (height / 5) - 15, Integer.parseInt("FF0000", 16));
 			else

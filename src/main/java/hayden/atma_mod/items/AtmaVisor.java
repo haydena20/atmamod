@@ -5,8 +5,6 @@ import baubles.api.BaublesApi;
 import baubles.api.IBauble;
 import baubles.api.cap.IBaublesItemHandler;
 import baubles.common.Baubles;
-import hayden.atma_mod.capabilities.CooldownBaubleProvider;
-import hayden.atma_mod.capabilities.ICooldown;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,23 +25,32 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod.EventBusSubscriber
-public class AtmaCoil extends ItemBase implements IBauble
+public class AtmaVisor extends AtmaRing implements IBauble
 {
 
-	public AtmaCoil(String name)
+	private float maxBoost = 0.0F;
+	private float effBoost = 0.0F;
+	private float gainBoost = 0.0F;
+	
+	public AtmaVisor(String name, float maxBoost, float effBoost, float gainBoost)
 	{
-		super(name);
+		super(name, maxBoost, effBoost, gainBoost);
 		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
 		this.setMaxDamage(0);
 		this.setCreativeTab(CreativeTabs.TOOLS);
+		this.effBoost = effBoost;
+		this.maxBoost = maxBoost;
+		this.gainBoost = gainBoost;
 	}
 
 
 
+
 	@Override
-	public BaubleType getBaubleType(ItemStack itemstack) {
-		return BaubleType.CHARM;
+	public BaubleType getBaubleType(ItemStack itemstack) 
+	{
+		return BaubleType.HEAD;
 	}
 
 	@Override
@@ -64,13 +71,9 @@ public class AtmaCoil extends ItemBase implements IBauble
 	}
 
 	@Override
-	public void onWornTick(ItemStack itemstack, EntityLivingBase player) 
-	{
-		ICooldown cd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
-		cd.setMaxTicks(50);
-		if (itemstack.getItemDamage()==0) 
-		{
-			
+	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
+		if (itemstack.getItemDamage()==0) {
+			player.removePotionEffect(MobEffects.BLINDNESS);
 		}
 	}
 
@@ -87,11 +90,11 @@ public class AtmaCoil extends ItemBase implements IBauble
 
 	@Override
 	public void onEquipped(ItemStack itemstack, EntityLivingBase player) {
-		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_GOLD, .75F, 1.9f);
+		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, .75F, 1.9f);
 	}
 
 	@Override
 	public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
-		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_GOLD, .75F, 2f);
+		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, .75F, 2f);
 	}
 }
