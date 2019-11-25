@@ -69,15 +69,15 @@ public class SpeedCharm extends ItemBase implements IBauble
 		ICooldown cd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
 		Vec3d aim = player.getLookVec();
 		
-		cd.setMaxTicks(500.0F);
+		cd.setMaxTicks(300.0F);
 		
 		if (player.isSprinting() && !(player.fallDistance > 0) && !player.isInWater() && (cd.getTicks() > 0)) 
 		{			
-			player.addVelocity(aim.x * (1.03 * cd.getTicks()/cd.getMaxTicks() + 0.005), 0, aim.z * (1.03 * cd.getTicks()/cd.getMaxTicks()) + 0.005);
+			player.addVelocity(aim.x * (1.02 * cd.getTicks()/cd.getMaxTicks() + 0.005), 0, aim.z * (1.02 * cd.getTicks()/cd.getMaxTicks()) + 0.005);
 			
-			player.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1, 2);
+			player.playSound(SoundEvents.ITEM_FLINTANDSTEEL_USE, 1, 2);
 			
-			atma.removeAtma(75.0F);
+			atma.removeAtma(65.0F);
 			itemstack.damageItem(1, player);	
 			
 			if(cd.getTicks() > cd.getMaxTicks())

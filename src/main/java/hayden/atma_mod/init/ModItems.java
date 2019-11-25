@@ -35,7 +35,11 @@ public class ModItems
 	public static final AtmaCoil ATMACOIL = new AtmaCoil("atma_coil");
 	public static final AtmaCoilBlock ATMACOILBLOCK = new AtmaCoilBlock("atma_coil_block");
 	
-	public static final AtmaRing MINORATMARING = new AtmaRing("atma_ring", 25F, 0F, 0F);
+	public static final AtmaRing MINORMAXATMARING = new AtmaRing("minor_max_atma_ring", 25F, 0F, 0F);
+	public static final AtmaRing MINOREFFICIENCYATMARING = new AtmaRing("minor_atma_efficiency_ring", 0F, 15F, 0F);
+	public static final AtmaRing MINORBOOSTATMARING = new AtmaRing("minor_atma_boost_ring", 0F, 0F, 25F);
+	
+	
 	public static final AtmaVisor CRUDEVISOR = new AtmaVisor("crude_visor", 25F, 5F, 0F);
 	
 //	public static final Item BASEBALLBAT = new ItemBase("bat");

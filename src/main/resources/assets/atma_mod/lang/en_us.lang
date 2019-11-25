@@ -9,5 +9,9 @@ item.dash_feather.name=Phoenix Feather
 item.blindfold.name=Enchanted Blindfold
 item.atma_coil.name=Atma Coil
 
+item.minor_max_atma_ring.name=Lesser Ring of Capacity
+item.minor_atma_efficiency_ring.name=Lesser Ring of Focus
+item.minor_atma_boost_ring.name=Lesser Ring of Catalysis
+
 //Blocks
 //tile.paper_block.name=Block of Paper

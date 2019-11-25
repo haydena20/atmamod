@@ -37,8 +37,15 @@ public class PlayerHUD extends Gui
 		int uiWidth = width - 6;
 		int barHeight = height;
 		
+		if(minCd < maxCd)
+			for(int i = (int) (barHeight * (minCd/maxCd)); i > 0; i--)
+				drawString(mc.fontRenderer, "-", uiWidth-2, (height - 2) - i, Integer.parseInt("FFFFFF", 16));
+		else
+			for(int i = (int) (barHeight * (minCd/maxCd)); i > 0; i--)
+				drawString(mc.fontRenderer, "-", uiWidth-2, (height - 2) - i, Integer.parseInt("0000FF", 16));
+		
 		for(int i = barHeight; i > 0; i--)
-			drawString(mc.fontRenderer, "_", uiWidth, (height - 8) - i, Integer.parseInt("FF0000", 16));
+			drawString(mc.fontRenderer, "_", uiWidth, (height - 7) - i, Integer.parseInt("FF0000", 16));
 		
 		
 		
@@ -47,14 +54,14 @@ public class PlayerHUD extends Gui
 				if(!(minA > maxA))
 				{
 					for(int i = (int) (barHeight * (minA/maxA)); i > 0; i--)
-						drawString(mc.fontRenderer, "_", uiWidth, (height - 8) - i, Integer.parseInt("FFAA00", 16));
+						drawString(mc.fontRenderer, "_", uiWidth, (height - 7) - i, Integer.parseInt("FFAA00", 16));
 					
 					drawCenteredString(mc.fontRenderer,(int) ((minA/maxA)*100) + "%", uiWidth - 15, (height - 10), Integer.parseInt("FFAA00", 16));
 				}
 				else
 				{
 					for(int i = barHeight; i > 0; i--)
-						drawString(mc.fontRenderer, "_", (int) (uiWidth + Math.random() - (Math.random()*-1)), (height - 8) - i, Integer.parseInt("FFAA00", 16));
+						drawString(mc.fontRenderer, "_", (int) (uiWidth + Math.random() - (Math.random()*-1)), (height - 7) - i, Integer.parseInt("FFAA00", 16));
 					
 					drawCenteredString(mc.fontRenderer,(int) ((minA/maxA)*100) + "%", (int) ((uiWidth + Math.random() - (Math.random()*-1)) - 15), (height - 10), Integer.parseInt("FFAA00", 16));
 				}
@@ -62,7 +69,7 @@ public class PlayerHUD extends Gui
 			else
 			{
 				for(int i = (int) (barHeight * Math.abs(minA/maxA)); i > 0; i--)
-					drawString(mc.fontRenderer, "_", (int) (uiWidth + Math.random() - (Math.random()*-1)), (height - 8) - i, Integer.parseInt("FFFFFF", 16));
+					drawString(mc.fontRenderer, "_", (int) (uiWidth + Math.random() - (Math.random()*-1)), (height - 7) - i, Integer.parseInt("FFFFFF", 16));
 				
 				drawCenteredString(mc.fontRenderer,(int) ((minA/maxA)*100) + "%", (int)(uiWidth - 15 - (Math.random() - (Math.random()*-1))), (height - 10), Integer.parseInt("FFFFFF", 16));
 			}
@@ -78,8 +85,7 @@ public class PlayerHUD extends Gui
 //				drawString(mc.fontRenderer, currentMarkers.toString(), width / 2, (height / 5) - 4, Integer.parseInt("FFFFFF", 16));
 //			}
 				
-		for(int i = (int) (barHeight * (minCd/maxCd)); i > 0; i--)
-			drawString(mc.fontRenderer, ".", uiWidth-6, (height - 8) - i, Integer.parseInt("FFFFFF", 16));
+
 		
 			if(!(minCd >= maxCd))
 				drawCenteredString(mc.fontRenderer, (int)minCd + "/" + (int)maxCd, width / 2, (height / 5) - 15, Integer.parseInt("FF0000", 16));
