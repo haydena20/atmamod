@@ -1,10 +1,15 @@
 package hayden.atma_mod.items;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import baubles.api.BaubleType;
 import baubles.api.BaublesApi;
 import baubles.api.IBauble;
 import baubles.api.cap.IBaublesItemHandler;
 import baubles.common.Baubles;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,6 +47,14 @@ public class AtmaRing extends ItemBase implements IBauble
 		this.effBoost = effBoost;
 		this.maxBoost = maxBoost;
 		this.gainBoost = gainBoost;
+	}
+	
+	@Override
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+	{
+		tooltip.add("Max Atma Boost: " + this.maxBoost + "%");
+		tooltip.add("Atma Efficiency Boost: " + this.effBoost+ "%");
+		tooltip.add("Atma Intake Boost: " + this.gainBoost+ "%");
 	}
 
 	public float getEffBoost()
@@ -85,7 +98,7 @@ public class AtmaRing extends ItemBase implements IBauble
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
 		if (itemstack.getItemDamage()==0) 
 		{
-			
+//			this.maxBoost += 0.01;
 		}
 	}
 

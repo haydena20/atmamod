@@ -40,7 +40,7 @@ public class ModItems
 	public static final AtmaRing MINORBOOSTATMARING = new AtmaRing("minor_atma_boost_ring", 0F, 0F, 25F);
 	
 	
-	public static final AtmaVisor CRUDEVISOR = new AtmaVisor("crude_visor", 25F, 5F, 0F);
+	public static final AtmaVisor CRUDEVISOR = new AtmaVisor("crude_visor", 5F, 5F, 5F);
 	
 //	public static final Item BASEBALLBAT = new ItemBase("bat");
 	
