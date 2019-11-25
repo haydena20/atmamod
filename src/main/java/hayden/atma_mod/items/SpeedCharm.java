@@ -12,6 +12,9 @@ import hayden.atma_mod.capabilities.CooldownBaubleProvider;
 import hayden.atma_mod.capabilities.IAtma;
 import hayden.atma_mod.capabilities.ICooldown;
 import hayden.atma_mod.utils.handlers.Events;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -73,9 +76,14 @@ public class SpeedCharm extends ItemBase implements IBauble
 		
 		if (player.isSprinting() && !(player.fallDistance > 0) && !player.isInWater() && (cd.getTicks() > 0)) 
 		{			
-			player.addVelocity(aim.x * (1.02 * cd.getTicks()/cd.getMaxTicks() + 0.005), 0, aim.z * (1.02 * cd.getTicks()/cd.getMaxTicks()) + 0.005);
+			player.addVelocity(aim.x * (1.01 * cd.getTicks()/cd.getMaxTicks() + 0.005), 0, aim.z * (1.01 * cd.getTicks()/cd.getMaxTicks()) + 0.005);
 			
-			player.playSound(SoundEvents.ITEM_FLINTANDSTEEL_USE, 1, 2);
+			IBlockState blockBelow = player.world.getBlockState(player.getPosition().down());
+			if(blockBelow.getMaterial() == Material.WATER)
+				player.setVelocity(player.motionX, 0, player.motionZ);
+			
+			if(player.ticksExisted % 4 == 0)
+				player.playSound(SoundEvents.ITEM_FLINTANDSTEEL_USE, 1, 2);
 			
 			atma.removeAtma(65.0F);
 			itemstack.damageItem(1, player);	
@@ -83,7 +91,7 @@ public class SpeedCharm extends ItemBase implements IBauble
 			if(cd.getTicks() > cd.getMaxTicks())
 				cd.setTicks(cd.getMaxTicks());
 			
-			cd.setTicks(cd.getTicks()-10);;
+			cd.setTicks(cd.getTicks()-8);;
 			
 			Events.updatePlayerAtma((EntityPlayer) player);
 		}
