@@ -9,6 +9,7 @@ import hayden.atma_mod.init.ModItems;
 import hayden.atma_mod.items.AtmaCoil;
 import hayden.atma_mod.items.AtmaRing;
 import hayden.atma_mod.items.ItemBase;
+import hayden.atma_mod.items.SpeedCharm;
 import hayden.atma_mod.messages.MyMessage;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -28,10 +29,12 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.*;
 import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -42,6 +45,13 @@ import net.minecraft.item.Item;
 
 public class Events 
 {
+	@SubscribeEvent(priority=EventPriority.LOWEST)
+	public void onJump(LivingJumpEvent event)
+	{
+		if(event.getEntity() instanceof EntityPlayer && BaublesApi.isBaubleEquipped((EntityPlayer)event.getEntity(), ModItems.SPEEDCHARM) >= 0 && event.getEntity().isSprinting())
+				event.getEntity().setVelocity(event.getEntity().motionX, 0, event.getEntity().motionZ);
+	}
+	
 	@SubscribeEvent
 	public void onItemPickup(EntityItemPickupEvent event)
 	{
