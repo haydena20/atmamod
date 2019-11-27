@@ -72,15 +72,16 @@ public class SpeedCharm extends ItemBase implements IBauble
 		ICooldown cd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
 		Vec3d aim = player.getLookVec();
 		
-		cd.setMaxTicks(500.0F);
+		cd.setMaxTicks(350.0F);
 		
-		if (player.isSprinting() && !(player.fallDistance > 0) && !player.isInWater() && (cd.getTicks() > 0)) 
+		if (player.isSprinting() && !(player.fallDistance > 0) && !player.isInWater()) 
 		{			
-			player.addVelocity(aim.x * (1.01 * cd.getTicks()/cd.getMaxTicks() + 0.005), 0, aim.z * (1.01 * cd.getTicks()/cd.getMaxTicks()) + 0.005);
-			
+			player.addVelocity(aim.x * (1.01 * ((cd.getTicks()/cd.getMaxTicks())+0.1)), 0, aim.z * (1.01 * ((cd.getTicks()/cd.getMaxTicks())+0.1)));
+				
 			IBlockState blockBelow = player.world.getBlockState(player.getPosition().down());
-			if(blockBelow.getMaterial() == Material.WATER)
-				player.setVelocity(player.motionX, 0, player.motionZ);
+			
+			if(blockBelow.getMaterial() == Material.WATER || blockBelow.getMaterial() == Material.LAVA)
+				player.setVelocity(player.motionX + 0.01, 0, player.motionZ + 0.01);
 			
 			if(player.ticksExisted % 3 == 0)
 				player.playSound(SoundEvents.ITEM_FLINTANDSTEEL_USE, 1, 2);
@@ -91,7 +92,10 @@ public class SpeedCharm extends ItemBase implements IBauble
 			if(cd.getTicks() > cd.getMaxTicks())
 				cd.setTicks(cd.getMaxTicks());
 			
-			cd.setTicks(cd.getTicks()-10);;
+			cd.setTicks(cd.getTicks()-10);
+			
+			if(cd.getTicks() < 0)
+				cd.setTicks(0);
 			
 			Events.updatePlayerAtma((EntityPlayer) player);
 		}
