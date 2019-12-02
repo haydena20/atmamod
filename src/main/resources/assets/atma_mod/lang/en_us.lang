@@ -1,17 +1,24 @@
 
 //Items
-//item.bat.name=Bat
 
-item.lesser_atma_crystal.name=Lesser Atma Catalyst
-item.atma_crystal.name=Atma Catalyst
+item.pyrite_shards.name=Pyrite Shards
+
+item.lesser_atma_crystal.name=Crude Pyritic Catalyst
+item.atma_crystal.name=Pyritic Catalyst
 
 item.dash_feather.name=Phoenix Feather
-item.blindfold.name=Enchanted Blindfold
-item.atma_coil.name=Atma Coil
+item.speed_charm.name=Hermes' Laces
 
-item.minor_max_atma_ring.name=Lesser Ring of Capacity
-item.minor_atma_efficiency_ring.name=Lesser Ring of Focus
-item.minor_atma_boost_ring.name=Lesser Ring of Catalysis
+item.blindfold.name=Enchanted Blindfold
+item.crude_visor.name=Crude Visor
+item.true_visor.name=Sola Visor
+
+item.atma_coil.name=Impact Coil
+item.atma_coil_block.name=Excavation Coil
+
+item.minor_max_atma_ring.name=Crude Ring of Capacity
+item.minor_atma_efficiency_ring.name=Crude Ring of Focus
+item.minor_atma_boost_ring.name=Crude Ring of Catalysis
 
 //Blocks
-//tile.paper_block.name=Block of Paper
+

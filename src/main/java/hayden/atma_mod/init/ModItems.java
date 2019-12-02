@@ -23,6 +23,8 @@ public class ModItems
 	
 	public static final DebugTool DEBUGTOOL = new DebugTool("debug_tool");
 	
+	public static final ItemBase PYRITESHARDS = new ItemBase("pyrite_shards");
+	
 	public static final AtmaCrystal LESSERATMACRYSTAL = new AtmaCrystal("lesser_atma_crystal", 1000);
 	public static final AtmaCrystal ATMACRYSTAL = new AtmaCrystal("atma_crystal", 10000);
 	
@@ -35,12 +37,13 @@ public class ModItems
 	public static final AtmaCoil ATMACOIL = new AtmaCoil("atma_coil");
 	public static final AtmaCoilBlock ATMACOILBLOCK = new AtmaCoilBlock("atma_coil_block");
 	
-	public static final AtmaRing MINORMAXATMARING = new AtmaRing("minor_max_atma_ring", 25F, 0F, 0F);
-	public static final AtmaRing MINOREFFICIENCYATMARING = new AtmaRing("minor_atma_efficiency_ring", 0F, 15F, 0F);
-	public static final AtmaRing MINORBOOSTATMARING = new AtmaRing("minor_atma_boost_ring", 0F, 0F, 25F);
+	public static final AtmaRing MINORMAXATMARING = new AtmaRing("minor_max_atma_ring", 20F, 0F, 0F);
+	public static final AtmaRing MINOREFFICIENCYATMARING = new AtmaRing("minor_atma_efficiency_ring", 0F, 10F, 0F);
+	public static final AtmaRing MINORBOOSTATMARING = new AtmaRing("minor_atma_boost_ring", 0F, 0F, 20F);
 	
 	
 	public static final AtmaVisor CRUDEVISOR = new AtmaVisor("crude_visor", 5F, 5F, 5F);
+	public static final AtmaVisor TRUEVISOR = new AtmaVisor("true_visor", 10F, 10F, 10F);
 	
 //	public static final Item BASEBALLBAT = new ItemBase("bat");
 	
