@@ -13,6 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class SolarAccumulator extends AdvBlockBase
@@ -33,6 +34,11 @@ public class SolarAccumulator extends AdvBlockBase
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new AccumulatorEntity();
+		
+	}
+
+	public static void setState(boolean burning, World world, BlockPos pos) 
+	{
 		
 	}
 }
