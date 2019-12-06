@@ -22,6 +22,8 @@ item.minor_atma_boost_ring.name=Crude Ring of Catalysis
 
 //Blocks
 
+tile.pyrite_ore.name=Pyrite Ore
+
 //Containers
 
 container.solar_accumulator
