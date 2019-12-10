@@ -91,8 +91,8 @@ public class Events
 		
 		if(!(BaublesApi.isBaubleEquipped(player, ModItems.ATMACOILBLOCK) == -1) && charmcd.getTicks() >= charmcd.getMaxTicks())
 		{
-			player.addPotionEffect(new PotionEffect(MobEffects.SPEED,60,1,false,false));
-			atma.addAtma(500);
+			player.addPotionEffect(new PotionEffect(MobEffects.HASTE,60,2,false,false));
+			atma.addAtma(200);
 			charmcd.setTicks(0);
 			
 			Events.updatePlayerAtma((EntityPlayer) player);
