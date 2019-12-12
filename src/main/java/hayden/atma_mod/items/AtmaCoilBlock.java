@@ -67,7 +67,7 @@ public class AtmaCoilBlock extends ItemBase implements IBauble
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) 
 	{
 		ICooldown cd = player.getCapability(CooldownBaubleProvider.COOLDOWN, null);
-		cd.setMaxTicks(50);
+		cd.setMaxTicks(25);
 		if (itemstack.getItemDamage()==0) 
 		{
 			

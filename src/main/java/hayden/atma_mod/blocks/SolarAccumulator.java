@@ -1,7 +1,7 @@
 package hayden.atma_mod.blocks;
 
 import hayden.atma_mod.Main;
-import hayden.atma_mod.blocks.tileentities.AccumulatorEntity;
+//import hayden.atma_mod.blocks.tileentities.AccumulatorEntity;
 import hayden.atma_mod.init.ModBlocks;
 import hayden.atma_mod.init.ModItems;
 import hayden.atma_mod.utils.IHasModel;
@@ -31,11 +31,11 @@ public class SolarAccumulator extends AdvBlockBase
 		Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");		
 	}
 	
-	public TileEntity createNewTileEntity(World worldIn, int meta)
-	{
-		return new AccumulatorEntity();
-		
-	}
+//	public TileEntity createNewTileEntity(World worldIn, int meta)
+//	{
+//		return new AccumulatorEntity();
+//		
+//	}
 
 	public static void setState(boolean burning, World world, BlockPos pos) 
 	{

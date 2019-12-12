@@ -91,13 +91,33 @@ public class Events
 		
 		if(!(BaublesApi.isBaubleEquipped(player, ModItems.ATMACOILBLOCK) == -1) && charmcd.getTicks() >= charmcd.getMaxTicks())
 		{
-			player.addPotionEffect(new PotionEffect(MobEffects.HASTE,60,2,false,false));
-			atma.addAtma(200);
+			player.addPotionEffect(new PotionEffect(MobEffects.HASTE,15,2,false,false));
+			atma.addAtma(20);
 			charmcd.setTicks(0);
 			
 			Events.updatePlayerAtma((EntityPlayer) player);
 		}
 				
+		if(event.getWorld().getBlockState(event.getPos()).getBlock().canHarvestBlock(event.getWorld(), event.getPos(), player))
+		{
+			int index = 1;
+			
+			while(event.getWorld().getBlockState(event.getPos()) == event.getWorld().getBlockState(event.getPos().up(index)))
+			{
+				event.getWorld().destroyBlock(event.getPos().up(index), true);
+				event.getPlayer().getHeldItemMainhand().damageItem(1, player);
+				index++;
+			}
+			
+			while(event.getWorld().getBlockState(event.getPos()) == event.getWorld().getBlockState(event.getPos().up(index)))
+			{
+				event.getWorld().destroyBlock(event.getPos().up(index), true);
+				event.getPlayer().getHeldItemMainhand().damageItem(1, player);
+				index++;
+			}
+		}
+			
+		
 		
 		//Explosion explosion = new Explosion(event.getTarget().world, event.getEntityPlayer(), event.getTarget().posX, event.getTarget().posY, event.getTarget().posZ, 3.0F, false, false);
 		//explosion.doExplosionB(true);
@@ -149,7 +169,7 @@ public class Events
 //			Atma Sunlight Gain (Friendly increase; will never go above max)
 			if(player.getEntityWorld().canBlockSeeSky(player.getPosition()) && player.getEntityWorld().isDaytime() && (atma.getAtma() < atma.getMaxAtma()))
 			{
-				atma.addAtma(50F);
+				atma.addAtma(50F / player.world.getSunBrightnessFactor(0));
 				if((atma.getAtma()+500 > atma.getMaxAtma()) && (atma.getAtma()+500 < atma.getMaxAtma()+500))
 					atma.setAtma(atma.getMaxAtma());
 
