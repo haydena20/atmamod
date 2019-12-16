@@ -166,7 +166,7 @@ public class Events
 //				veinMine(event.getWorld(), event.getPlayer(), event.getPos().south(index));
 //				index++;	
 //			}
-			veinMine(event.getWorld(), event.getPlayer(), event.getPos(), event.getWorld().getBlockState(event.getPos()));
+			veinMine(event.getWorld(), event.getPlayer(), event.getPos(), event.getWorld().getBlockState(event.getPos()), 2);
 			
 		}
 			
@@ -176,72 +176,95 @@ public class Events
 		//explosion.doExplosionB(true);
 		//explosion.doExplosionA();
 	}
-	public void veinMine(World worldIn, EntityPlayer playerIn, BlockPos blockPos, IBlockState blockType)
+	public void veinMine(World worldIn, EntityPlayer playerIn, BlockPos blockPos, IBlockState blockType, int max)
 	{
+		if(max <= 0)
+			return;
+		
+		Explosion explosion = new Explosion(worldIn, playerIn, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 1, false, false);
+		
 		int index = 1; //up
 		
 		while(blockType == worldIn.getBlockState(blockPos.up(index)))
 		{
+			if(index > max) break;
+			
 			worldIn.destroyBlock(blockPos.up(index), true);
 			playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+			explosion.doExplosionB(false);
 			
 			index++;
-			veinMine(worldIn, playerIn, blockPos.up(index), blockType);
+			veinMine(worldIn, playerIn, blockPos.up(), blockType, max--);
 		}
 		
 		index = 1; //down
 		
 		while(blockType == worldIn.getBlockState(blockPos.down(index)))
 		{
+			if(index > max) break;
+			
 			worldIn.destroyBlock(blockPos.down(index), true);
 			playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+			explosion.doExplosionB(false);
 			
 			index++;
-			veinMine(worldIn, playerIn, blockPos.down(index), blockType);
+			veinMine(worldIn, playerIn, blockPos.down(), blockType, max--);
 		}
 		
 		index = 1; //east
 		
 		while(blockType == worldIn.getBlockState(blockPos.east(index)))
 		{
+			if(index > max) break;
+			
 			worldIn.destroyBlock(blockPos.east(index), true);
 			playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+			explosion.doExplosionB(false);
 			
 			index++;
-			veinMine(worldIn, playerIn, blockPos.east(index), blockType);
+			veinMine(worldIn, playerIn, blockPos.east(), blockType, max--);
 		}
 		
 		index = 1; //west
 		
 		while(blockType == worldIn.getBlockState(blockPos.west(index)))
 		{
+			if(index > max) break;
+			
 			worldIn.destroyBlock(blockPos.west(index), true);
 			playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+			explosion.doExplosionB(false);
 			
 			index++;
-			veinMine(worldIn, playerIn, blockPos.west(index), blockType);
+			veinMine(worldIn, playerIn, blockPos.west(), blockType, max--);
 		}
 		
 		index = 1; //north
 		
 		while(blockType == worldIn.getBlockState(blockPos.north(index)))
 		{
+			if(index > max) break;
+			
 			worldIn.destroyBlock(blockPos.north(index), true);
 			playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+			explosion.doExplosionB(false);
 			
 			index++;
-			veinMine(worldIn, playerIn, blockPos.north(index), blockType);
+			veinMine(worldIn, playerIn, blockPos.north(), blockType, max--);
 		}
 		
 		index = 1; //south
 		
 		while(blockType == worldIn.getBlockState(blockPos.south(index)))
 		{
+			if(index > max) break;
+			
 			worldIn.destroyBlock(blockPos.south(index), true);
 			playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+			explosion.doExplosionB(false);
 			
 			index++;
-			veinMine(worldIn, playerIn, blockPos.south(index), blockType);
+			veinMine(worldIn, playerIn, blockPos.south(), blockType, max--);
 		}
 	}
 	
