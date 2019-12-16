@@ -12,6 +12,7 @@ import hayden.atma_mod.items.ItemBase;
 import hayden.atma_mod.items.SpeedCharm;
 import hayden.atma_mod.messages.MyMessage;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommand;
 import net.minecraft.entity.Entity;
@@ -100,21 +101,73 @@ public class Events
 				
 		if(event.getWorld().getBlockState(event.getPos()).getBlock().canHarvestBlock(event.getWorld(), event.getPos(), player))
 		{
-			int index = 1;
+//			int index = 1; //up
+//			
+//			while(event.getWorld().getBlockState(event.getPos()) == event.getWorld().getBlockState(event.getPos().up(index)))
+//			{
+//				event.getWorld().destroyBlock(event.getPos().up(index), true);
+//				event.getPlayer().getHeldItemMainhand().damageItem(1, player);
+//				
+//				veinMine(event.getWorld(), event.getPlayer(), event.getPos().up(index));
+//				index++;
+//			}
+//			
+//			index = 1; //down
+//			
+//			while(event.getWorld().getBlockState(event.getPos()) == event.getWorld().getBlockState(event.getPos().down(index)))
+//			{
+//				event.getWorld().destroyBlock(event.getPos().down(index), true);
+//				event.getPlayer().getHeldItemMainhand().damageItem(1, player);
+//				
+//				veinMine(event.getWorld(), event.getPlayer(), event.getPos().down(index));
+//				index++;
+//			}
+//			
+//			index = 1; //east
+//			
+//			while(event.getWorld().getBlockState(event.getPos()) == event.getWorld().getBlockState(event.getPos().east(index)))
+//			{
+//				event.getWorld().destroyBlock(event.getPos().east(index), true);
+//				event.getPlayer().getHeldItemMainhand().damageItem(1, player);
+//				
+//				veinMine(event.getWorld(), event.getPlayer(), event.getPos().east(index));
+//				index++;
+//			}
+//			
+//			index = 1; //west
+//			
+//			while(event.getWorld().getBlockState(event.getPos()) == event.getWorld().getBlockState(event.getPos().west(index)))
+//			{
+//				event.getWorld().destroyBlock(event.getPos().west(index), true);
+//				event.getPlayer().getHeldItemMainhand().damageItem(1, player);
+//				
+//				veinMine(event.getWorld(), event.getPlayer(), event.getPos().west(index));
+//				index++;
+//			}
+//			
+//			index = 1; //north
+//			
+//			while(event.getWorld().getBlockState(event.getPos()) == event.getWorld().getBlockState(event.getPos().north(index)))
+//			{
+//				event.getWorld().destroyBlock(event.getPos().north(index), true);
+//				event.getPlayer().getHeldItemMainhand().damageItem(1, player);
+//				
+//				veinMine(event.getWorld(), event.getPlayer(), event.getPos().north(index));
+//				index++;
+//			}
+//			
+//			index = 1; //south
+//			
+//			while(event.getWorld().getBlockState(event.getPos()) == event.getWorld().getBlockState(event.getPos().south(index)))
+//			{
+//				event.getWorld().destroyBlock(event.getPos().south(index), true);
+//				event.getPlayer().getHeldItemMainhand().damageItem(1, player);
+//				
+//				veinMine(event.getWorld(), event.getPlayer(), event.getPos().south(index));
+//				index++;	
+//			}
+			veinMine(event.getWorld(), event.getPlayer(), event.getPos(), event.getWorld().getBlockState(event.getPos()));
 			
-			while(event.getWorld().getBlockState(event.getPos()) == event.getWorld().getBlockState(event.getPos().up(index)))
-			{
-				event.getWorld().destroyBlock(event.getPos().up(index), true);
-				event.getPlayer().getHeldItemMainhand().damageItem(1, player);
-				index++;
-			}
-			
-			while(event.getWorld().getBlockState(event.getPos()) == event.getWorld().getBlockState(event.getPos().up(index)))
-			{
-				event.getWorld().destroyBlock(event.getPos().up(index), true);
-				event.getPlayer().getHeldItemMainhand().damageItem(1, player);
-				index++;
-			}
 		}
 			
 		
@@ -123,6 +176,75 @@ public class Events
 		//explosion.doExplosionB(true);
 		//explosion.doExplosionA();
 	}
+	public void veinMine(World worldIn, EntityPlayer playerIn, BlockPos blockPos, IBlockState blockType)
+	{
+		int index = 1; //up
+		
+		while(blockType == worldIn.getBlockState(blockPos.up(index)))
+		{
+			worldIn.destroyBlock(blockPos.up(index), true);
+			playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+			
+			index++;
+			veinMine(worldIn, playerIn, blockPos.up(index), blockType);
+		}
+		
+		index = 1; //down
+		
+		while(blockType == worldIn.getBlockState(blockPos.down(index)))
+		{
+			worldIn.destroyBlock(blockPos.down(index), true);
+			playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+			
+			index++;
+			veinMine(worldIn, playerIn, blockPos.down(index), blockType);
+		}
+		
+		index = 1; //east
+		
+		while(blockType == worldIn.getBlockState(blockPos.east(index)))
+		{
+			worldIn.destroyBlock(blockPos.east(index), true);
+			playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+			
+			index++;
+			veinMine(worldIn, playerIn, blockPos.east(index), blockType);
+		}
+		
+		index = 1; //west
+		
+		while(blockType == worldIn.getBlockState(blockPos.west(index)))
+		{
+			worldIn.destroyBlock(blockPos.west(index), true);
+			playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+			
+			index++;
+			veinMine(worldIn, playerIn, blockPos.west(index), blockType);
+		}
+		
+		index = 1; //north
+		
+		while(blockType == worldIn.getBlockState(blockPos.north(index)))
+		{
+			worldIn.destroyBlock(blockPos.north(index), true);
+			playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+			
+			index++;
+			veinMine(worldIn, playerIn, blockPos.north(index), blockType);
+		}
+		
+		index = 1; //south
+		
+		while(blockType == worldIn.getBlockState(blockPos.south(index)))
+		{
+			worldIn.destroyBlock(blockPos.south(index), true);
+			playerIn.getHeldItemMainhand().damageItem(1, playerIn);
+			
+			index++;
+			veinMine(worldIn, playerIn, blockPos.south(index), blockType);
+		}
+	}
+	
 
 	@SubscribeEvent
 	public void perPlayerTickServer(PlayerTickEvent event)
