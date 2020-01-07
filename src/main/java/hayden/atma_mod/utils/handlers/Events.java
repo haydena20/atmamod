@@ -166,7 +166,10 @@ public class Events
 //				veinMine(event.getWorld(), event.getPlayer(), event.getPos().south(index));
 //				index++;	
 //			}
-			veinMine(event.getWorld(), event.getPlayer(), event.getPos(), event.getWorld().getBlockState(event.getPos()), 2);
+			
+			
+			//veinminer
+//			veinMine(event.getWorld(), event.getPlayer(), event.getPos(), event.getWorld().getBlockState(event.getPos()), 2);
 			
 		}
 			
@@ -324,7 +327,7 @@ public class Events
 			if(atma.getAtma() > atma.getMaxAtma())
 			{
 				player.removePotionEffect(MobEffects.FIRE_RESISTANCE);
-				player.setFire(60);
+				player.setFire(2);
 			}
 			
 //			Negative Atma Effects, causes debuffs and 'corruption' (negative atma regen)
