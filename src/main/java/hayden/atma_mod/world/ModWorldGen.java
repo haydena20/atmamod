@@ -4,6 +4,7 @@ import java.util.Random;
 
 import hayden.atma_mod.init.ModBlocks;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -25,6 +26,8 @@ public class ModWorldGen implements IWorldGenerator {
 	{
 		generateOre(ModBlocks.PYRITE_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 40, 256, random.nextInt(7) + 4, 18);
 		generateOre(ModBlocks.PYRITE_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 4, 25, random.nextInt(7) + 1, 6);
+		
+		generateOre(Blocks.MONSTER_EGG.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 4, 45, random.nextInt(7) + 10, 5);
 		
 		generateOre(ModBlocks.OVERWORLDQUARTZ.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 4, 25, random.nextInt(7) + 2, 10);
 	}

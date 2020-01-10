@@ -19,6 +19,11 @@ public class ModItems
 {
 	public static final List<Item> ITEMS = new ArrayList<Item>();
 	
+//	Materials
+	
+	public static final ItemBase SILVERSCALE = new ItemBase("silver_scale");
+	public static final ItemBase CARMINE = new ItemBase("carmine");
+	
 //	Items
 	
 	public static final DebugTool DEBUGTOOL = new DebugTool("debug_tool");
