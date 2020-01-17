@@ -17,9 +17,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommand;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -30,6 +32,8 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.*;
 import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -397,5 +401,15 @@ public class Events
 		atma.setAtma(0F);
 		
 		Events.updatePlayerAtma((EntityPlayer) event.player);
+	}
+	
+	//Silverfish Drops
+	public void onSilverfishDeath(LivingDropsEvent event)
+	{
+		if(!event.getEntity().world.isRemote && event.getEntity() instanceof EntitySilverfish)
+		{
+			event.getEntityLiving().dropItem(Items.GOLD_NUGGET, 3);
+			event.getEntityLiving().dropItem(ModItems.SILVERSCALE, 1);
+		}
 	}
 }
