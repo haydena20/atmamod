@@ -1,0 +1,27 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients": 
+    [
+
+    {
+      "item": "minecraft:clay"
+    },
+    {
+      "item": "minecraft:clay"
+    },
+    {
+      "item": "minecraft:clay"
+    },
+    {
+      "item": "minecraft:redstone"
+    }
+    
+    ],
+
+    "result": 
+    {
+        "item": "atma_mod:carmine",
+        "count": 3
+    }
+}

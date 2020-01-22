@@ -2,6 +2,8 @@
 //Items
 
 item.pyrite_shards.name=Pyrite Shards
+item.carmine.name=Carmine
+item.silver_scale.name=Silverscale
 
 item.lesser_atma_crystal.name=Crude Pyritic Catalyst
 item.atma_crystal.name=Pyritic Catalyst
