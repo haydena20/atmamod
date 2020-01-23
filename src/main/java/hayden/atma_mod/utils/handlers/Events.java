@@ -16,6 +16,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommand;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
@@ -404,12 +405,13 @@ public class Events
 	}
 	
 	//Silverfish Drops
+	@SubscribeEvent
 	public void onSilverfishDeath(LivingDropsEvent event)
 	{
 		if(!event.getEntity().world.isRemote && event.getEntity() instanceof EntitySilverfish)
 		{
-			event.getEntityLiving().dropItem(Items.GOLD_NUGGET, 3);
-			event.getEntityLiving().dropItem(ModItems.SILVERSCALE, 1);
+//			event.getEntityLiving().dropItem(Items.GOLD_NUGGET, 3);
+			event.getDrops().add(new EntityItem(event.getEntity().world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, new ItemStack(ModItems.SILVERSCALE, (int)Math.random()*4)));
 		}
 	}
 }
