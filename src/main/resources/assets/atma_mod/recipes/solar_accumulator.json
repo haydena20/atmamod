@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+   
+    "pattern":
+    [
+        "CRC",
+        "OOO",
+        "CCC"
+    ],
+   
+    "key":
+    {
+        "C":
+        {
+            "item": "atma_mod:carmine_bricks"
+        },
+        "R":
+        {
+            "item": "minecraft:daylightsensor"
+        },
+        "O":
+        {
+            "item": "minecraft:stone"
+        }
+    },
+   
+    "result":
+    {
+        "item": "atma_mod:solar_accumulator",
+        "count": 1
+    }
+}
