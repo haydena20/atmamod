@@ -7,6 +7,6 @@ public class ModRecipes
 {
 	public static void init()
 	{
-		//GameRegistry.addSmelting(ModBlocks.POWER_BLOCK, new ItemStack(ModItems.PERFECT_CRYSTAL_POWER, 1), 1000f);
+		GameRegistry.addSmelting(ModItems.CARMINE, new ItemStack(ModItems.CARMINE_BRICK, 1), 10f);
 	}
 }

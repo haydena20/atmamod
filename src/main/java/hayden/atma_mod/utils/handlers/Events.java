@@ -411,7 +411,7 @@ public class Events
 		if(!event.getEntity().world.isRemote && event.getEntity() instanceof EntitySilverfish)
 		{
 //			event.getEntityLiving().dropItem(Items.GOLD_NUGGET, 3);
-			event.getDrops().add(new EntityItem(event.getEntity().world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, new ItemStack(ModItems.SILVERSCALE, (int)Math.random()*4)));
+			event.getDrops().add(new EntityItem(event.getEntity().world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, new ItemStack(ModItems.SILVERSCALE, (int)(Math.random()*3))));
 		}
 	}
 }

@@ -23,6 +23,7 @@ public class ModItems
 	
 	public static final ItemBase SILVERSCALE = new ItemBase("silver_scale");
 	public static final ItemBase CARMINE = new ItemBase("carmine");
+	public static final ItemBase CARMINE_BRICK = new ItemBase("carmine_brick");
 	
 //	Items
 	

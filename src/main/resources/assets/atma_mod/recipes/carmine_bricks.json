@@ -1,0 +1,27 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients": 
+    [
+
+    {
+      "item": "atma_mod:carmine_brick"
+    },
+    {
+      "item": "atma_mod:carmine_brick"
+    },
+    {
+      "item": "atma_mod:carmine_brick"
+    },
+    {
+      "item": "atma_mod:carmine_brick"
+    }
+    
+    ],
+
+    "result": 
+    {
+        "item": "atma_mod:carmine_bricks",
+        "count": 1
+    }
+}
