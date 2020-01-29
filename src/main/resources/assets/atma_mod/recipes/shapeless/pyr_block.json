@@ -1,0 +1,42 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients": 
+    [
+
+    {
+      "item": "atma_mod:pyrite_shards"
+    },
+    {
+      "item": "atma_mod:pyrite_shards"
+    },
+    {
+      "item": "atma_mod:pyrite_shards"
+    },
+        {
+      "item": "atma_mod:pyrite_shards"
+    },
+        {
+      "item": "atma_mod:pyrite_shards"
+    },
+        {
+      "item": "atma_mod:pyrite_shards"
+    },
+        {
+      "item": "atma_mod:pyrite_shards"
+    },
+        {
+      "item": "atma_mod:pyrite_shards"
+    },
+    {
+      "item": "atma_mod:pyrite_shards"
+    }
+    
+    ],
+
+    "result": 
+    {
+        "item": "atma_mod:pyr_block",
+        "count": 1  
+    }
+}

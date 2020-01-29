@@ -17,7 +17,8 @@ public class ModBlocks
 	public static final List<Block> BLOCKS = new ArrayList<Block>();
 	
 	//Machines
-	public static final SolarAccumulator SOLAR_ACCUMULATOR = new SolarAccumulator("solar_accumulator");
+//	public static final SolarAccumulator SOLAR_ACCUMULATOR = new SolarAccumulator("solar_accumulator");
+	public static final BlockBase SOLAR_ACCUMULATOR = new BlockBase("solar_accumulator", Material.ROCK);
 	
 	//Ores
 	public static final AdvBlockBase PYRITE_ORE = new AdvBlockBase("pyrite_ore", Material.ROCK, SoundType.STONE, 3F, 1F, "pickaxe", 2, 0F, 0, CreativeTabs.DECORATIONS, ModItems.PYRITESHARDS, 1, 5);
@@ -25,6 +26,7 @@ public class ModBlocks
 	
 	//Building blocks
 	public static final AdvBlockBase CARMINE_BRICKS = new AdvBlockBase("carmine_bricks", Material.ROCK, SoundType.STONE, 1F, 2F, "pickaxe", 0, 0F, 0, CreativeTabs.BUILDING_BLOCKS);
+	public static final AdvBlockBase PYR_BLOCK = new AdvBlockBase("pyr_block", Material.GLASS, SoundType.GLASS, 3F, 2F, "pickaxe", 0, 0.2F, 0, CreativeTabs.BUILDING_BLOCKS);
 	
 	public static final AdvBlockBase PAPER_BLOCK = new AdvBlockBase("paper_block", Material.CLOTH, SoundType.CLOTH, 0.5F, 0F, "pickaxe", 0, 0F, 0, CreativeTabs.BUILDING_BLOCKS);
 	

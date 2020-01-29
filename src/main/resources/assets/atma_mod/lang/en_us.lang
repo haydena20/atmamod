@@ -3,6 +3,7 @@
 
 item.pyrite_shards.name=Pyrite Shards
 item.carmine.name=Carmine
+item.carmine_brick.name=Carmine Brick
 item.silver_scale.name=Silverscale
 
 item.lesser_atma_crystal.name=Crude Pyritic Catalyst
@@ -25,6 +26,8 @@ item.minor_atma_boost_ring.name=Crude Ring of Catalysis
 //Blocks
 
 tile.pyrite_ore.name=Pyrite Ore
+tile.pyr_block.name=Pyrite Block
+tile.carmine_bricks.name=Carmine Bricks
 
 //Containers
 
