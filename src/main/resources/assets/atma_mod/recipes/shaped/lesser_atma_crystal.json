@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+   
+    "pattern":
+    [
+        " C ",
+        "CPC",
+        " C "
+    ],
+   
+    "key":
+    {
+        "C":
+        {
+            "item": "atma_mod:carmine"
+        },
+        "P":
+        {
+            "item": "atma_mod:pyr_block"
+        }
+        
+    },
+   
+    "result":
+    {
+        "item": "atma_mod:lesser_atma_crystal",
+        "count": 1
+    }
+}

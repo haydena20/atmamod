@@ -322,7 +322,7 @@ public class Events
 //			Atma Sunlight Gain (Friendly increase; will never go above max)
 			if(player.getEntityWorld().canBlockSeeSky(player.getPosition()) && player.getEntityWorld().isDaytime() && (atma.getAtma() < atma.getMaxAtma()))
 			{
-				atma.addAtma(50F / player.world.getSunBrightnessFactor(0));
+				atma.addAtma(20F / player.world.getSunBrightnessFactor(0));
 				if((atma.getAtma()+500 > atma.getMaxAtma()) && (atma.getAtma()+500 < atma.getMaxAtma()+500))
 					atma.setAtma(atma.getMaxAtma());
 
