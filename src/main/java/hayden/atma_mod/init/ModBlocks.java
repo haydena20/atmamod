@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hayden.atma_mod.blocks.AdvBlockBase;
+import hayden.atma_mod.blocks.AtmaProjector;
 import hayden.atma_mod.blocks.BlockBase;
 import hayden.atma_mod.blocks.SolarAccumulator;
 import net.minecraft.block.Block;
@@ -19,7 +20,8 @@ public class ModBlocks
 	//Machines
 //	public static final SolarAccumulator SOLAR_ACCUMULATOR = new SolarAccumulator("solar_accumulator");
 	public static final BlockBase SOLAR_ACCUMULATOR = new BlockBase("solar_accumulator", Material.ROCK);
-	public static final BlockBase CRUDE_PROJECTOR = new BlockBase("CRUDE_PROJECTOR", Material.ROCK);
+//	public static final BlockBase CRUDE_PROJECTOR = new BlockBase("CRUDE_PROJECTOR", Material.ROCK);
+	public static final AtmaProjector CRUDE_PROJECTOR = new AtmaProjector("CRUDE_PROJECTOR", Material.ROCK);
 	
 	//Ores
 	public static final AdvBlockBase PYRITE_ORE = new AdvBlockBase("pyrite_ore", Material.ROCK, SoundType.STONE, 3F, 1F, "pickaxe", 2, 0F, 0, CreativeTabs.DECORATIONS, ModItems.PYRITESHARDS, 1, 5);
