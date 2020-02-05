@@ -5,6 +5,7 @@ import baubles.api.BaublesApi;
 import baubles.api.IBauble;
 import baubles.api.cap.IBaublesItemHandler;
 import baubles.common.Baubles;
+import hayden.atma_mod.Main;
 import hayden.atma_mod.capabilities.CooldownBaubleProvider;
 import hayden.atma_mod.capabilities.ICooldown;
 import net.minecraft.creativetab.CreativeTabs;
@@ -36,7 +37,7 @@ public class AtmaCoil extends ItemBase implements IBauble
 		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
 		this.setMaxDamage(0);
-		this.setCreativeTab(CreativeTabs.TOOLS);
+		setCreativeTab(Main.creativeTab);
 	}
 
 

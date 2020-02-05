@@ -7,6 +7,8 @@ public class ModRecipes
 {
 	public static void init()
 	{
+		ModBlocks.oreQuartz.initOreDict();
+		
 		GameRegistry.addSmelting(ModItems.CARMINE, new ItemStack(ModItems.CARMINE_BRICK, 1), 10f);
 	}
 }

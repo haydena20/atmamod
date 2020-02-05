@@ -7,6 +7,7 @@ import baubles.api.BaublesApi;
 import baubles.api.IBauble;
 import baubles.api.cap.IBaublesItemHandler;
 import baubles.common.Baubles;
+import hayden.atma_mod.Main;
 import hayden.atma_mod.capabilities.AtmaProvider;
 import hayden.atma_mod.capabilities.CooldownBaubleProvider;
 import hayden.atma_mod.capabilities.IAtma;
@@ -45,7 +46,7 @@ public class SpeedCharm extends ItemBase implements IBauble
 		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
 		this.setMaxDamage(1600);
-		this.setCreativeTab(CreativeTabs.TOOLS);
+		setCreativeTab(Main.creativeTab);
 	}
 
 	@Override

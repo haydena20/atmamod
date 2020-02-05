@@ -1,6 +1,7 @@
 package hayden.atma_mod;
 
 
+import hayden.atma_mod.gui.CreativeTab;
 import hayden.atma_mod.init.ModCapabilities;
 import hayden.atma_mod.init.ModRecipes;
 import hayden.atma_mod.proxy.CommonProxy;
@@ -34,6 +35,8 @@ public class Main
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
 	public static CommonProxy proxy;
     
+    public static final CreativeTab creativeTab = new CreativeTab();
+	
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {

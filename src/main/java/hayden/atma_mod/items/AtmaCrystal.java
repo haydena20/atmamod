@@ -1,5 +1,6 @@
 package hayden.atma_mod.items;
 
+import hayden.atma_mod.Main;
 import hayden.atma_mod.capabilities.AtmaProvider;
 import hayden.atma_mod.capabilities.IAtma;
 import hayden.atma_mod.utils.handlers.Events;
@@ -21,7 +22,7 @@ public class AtmaCrystal extends ItemBase
 		this.setHasSubtypes(true);
 		this.setMaxDamage(maxCharge);
 		this.setDamage(getDefaultInstance(), 1);
-		this.setCreativeTab(CreativeTabs.TOOLS);
+		setCreativeTab(Main.creativeTab);
 	}
 	
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)

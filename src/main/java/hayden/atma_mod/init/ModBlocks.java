@@ -6,6 +6,7 @@ import java.util.List;
 import hayden.atma_mod.blocks.AdvBlockBase;
 import hayden.atma_mod.blocks.AtmaProjector;
 import hayden.atma_mod.blocks.BlockBase;
+import hayden.atma_mod.blocks.BlockOre;
 import hayden.atma_mod.blocks.SolarAccumulator;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -24,8 +25,8 @@ public class ModBlocks
 	public static final AtmaProjector CRUDE_PROJECTOR = new AtmaProjector("CRUDE_PROJECTOR", Material.ROCK);
 	
 	//Ores
-	public static final AdvBlockBase PYRITE_ORE = new AdvBlockBase("pyrite_ore", Material.ROCK, SoundType.STONE, 3F, 1F, "pickaxe", 2, 0F, 0, CreativeTabs.DECORATIONS, ModItems.PYRITESHARDS, 1, 5);
-	public static final AdvBlockBase OVERWORLDQUARTZ = new AdvBlockBase("overworldquartz", Material.ROCK, SoundType.STONE, 3F, 1F, "pickaxe", 2, 0F, 0, CreativeTabs.DECORATIONS, Items.QUARTZ, 1, 2);
+	public static final BlockOre orePyrite = new BlockOre("pyrite_ore", Material.ROCK, SoundType.STONE, 3F, 1F, "pickaxe", 2, 0F, 0, CreativeTabs.DECORATIONS, ModItems.PYRITESHARDS, 1, 5);
+	public static final BlockOre oreQuartz = new BlockOre("overworldquartz", Material.ROCK, SoundType.STONE, 3F, 1F, "pickaxe", 2, 0F, 0, CreativeTabs.DECORATIONS, Items.QUARTZ, 1, 2);
 	
 	//Building blocks
 	public static final AdvBlockBase CARMINE_BRICKS = new AdvBlockBase("carmine_bricks", Material.ROCK, SoundType.STONE, 1F, 2F, "pickaxe", 0, 0F, 0, CreativeTabs.BUILDING_BLOCKS);

@@ -1,5 +1,6 @@
 package hayden.atma_mod.items;
 
+import hayden.atma_mod.Main;
 import hayden.atma_mod.capabilities.AtmaProvider;
 import hayden.atma_mod.capabilities.CooldownBaubleProvider;
 import hayden.atma_mod.capabilities.IAtma;
@@ -25,7 +26,7 @@ public class DebugTool extends ItemBase
 		super(name);
 		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
-		this.setCreativeTab(CreativeTabs.TOOLS);
+		setCreativeTab(Main.creativeTab);
 	}
 	
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
