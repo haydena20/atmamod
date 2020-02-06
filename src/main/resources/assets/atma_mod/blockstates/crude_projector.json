@@ -1,9 +1,5 @@
 {
     "variants": {
-        "facing=up": { "model": "atma_mod:crude_projector_up" },
-        "facing=north": { "model": "atma_mod:crude_projector_north" },
-        "facing=east":  { "model": "atma_mod:crude_north", "y": 90 },
-        "facing=south": { "model": "atma_mod:crude_north", "y": 180 },
-        "facing=west":  { "model": "atma_mod:crude_north", "y": 270 }
+        "normal": { "model": "atma_mod:crude_projector_up" }
     }
 }
