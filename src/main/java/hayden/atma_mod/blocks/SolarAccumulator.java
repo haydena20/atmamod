@@ -26,9 +26,9 @@ import net.minecraftforge.items.IItemHandler;
 
 public class SolarAccumulator extends BlockTileEntity<TileEntityAccumulator>
 {
-	public SolarAccumulator(String name)
+	public SolarAccumulator()
 	{
-		super(name, Material.ROCK, SoundType.STONE, 2F, 3F, "pickaxe", 1, CreativeTabs.DECORATIONS);
+		super("solar_accumulator", Material.ROCK, SoundType.STONE, 2F, 3F, "pickaxe", 1, CreativeTabs.DECORATIONS);
 	}
 
 	//https://mcforge.readthedocs.io/en/latest/tileentities/tileentity/

@@ -2,6 +2,7 @@ package hayden.atma_mod;
 
 
 import hayden.atma_mod.gui.CreativeTab;
+import hayden.atma_mod.init.ModBlocks;
 import hayden.atma_mod.init.ModCapabilities;
 import hayden.atma_mod.init.ModRecipes;
 import hayden.atma_mod.proxy.CommonProxy;
@@ -12,6 +13,7 @@ import hayden.atma_mod.utils.handlers.GuiRenderHandler;
 import hayden.atma_mod.utils.handlers.PacketHandler;
 import hayden.atma_mod.utils.handlers.RegistryHandler;
 import hayden.atma_mod.world.ModWorldGen;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -24,6 +26,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.ForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.fml.common.SidedProxy;
 
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
@@ -48,6 +52,8 @@ public class Main
     	PacketHandler.init();
     	
     	proxy.registerRenderers();
+    	
+    	ModBlocks.register();
     	
 		GameRegistry.registerWorldGenerator(new ModWorldGen(), 3);
     }    

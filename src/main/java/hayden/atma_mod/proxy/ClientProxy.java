@@ -15,7 +15,6 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
 	}
 	
-	@Override
 	public String localize(String unlocalized, Object... args) 
 	{
 		return I18n.format(unlocalized, args);
@@ -25,5 +24,7 @@ public class ClientProxy extends CommonProxy
 	{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAccumulator.class, new TESRAccumulator());
 	}
+	
+	
 }
 	

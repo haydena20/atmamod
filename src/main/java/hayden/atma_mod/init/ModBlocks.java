@@ -15,6 +15,10 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -23,7 +27,7 @@ public class ModBlocks
 	public static final List<Block> BLOCKS = new ArrayList<Block>();
 	//TileEntities
 	public static BlockCounter counter = new BlockCounter();
-	public static SolarAccumulator accumulator = new SolarAccumulator("solar_accumulator");
+	public static SolarAccumulator accumulator = new SolarAccumulator();
 	
 	//Machines
 //	public static final SolarAccumulator SOLAR_ACCUMULATOR = new SolarAccumulator("solar_accumulator");
@@ -43,9 +47,12 @@ public class ModBlocks
 	
 	//public static final AdvBlockBase POWER_BLOCK = new AdvBlockBase("power_block", Material.IRON, SoundType.METAL, 25F, 50F, "pickaxe", 3, 16F, 1, CreativeTabs.MATERIALS);
 
-	public static void register(IForgeRegistry<Block> registry) 
+	
+
+	
+	public static void register(/*IForgeRegistry<Block> registry*/) 
 	{
-		registry.registerAll(counter, accumulator);
+//		registry.registerAll(counter, accumulator);
 		
 		GameRegistry.registerTileEntity(accumulator.getTileEntityClass(), accumulator.getRegistryName().toString());
 		GameRegistry.registerTileEntity(counter.getTileEntityClass(), counter.getRegistryName().toString());
