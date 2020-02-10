@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import hayden.atma_mod.Main;
 import hayden.atma_mod.blocks.tileentities.TileEntityAccumulator;
+import hayden.atma_mod.blocks.tileentities.TileEntityCrystalCell;
 import hayden.atma_mod.items.AtmaCrystal;
 import hayden.atma_mod.blocks.tileentities.BlockTileEntity;
 import hayden.atma_mod.utils.Reference;
@@ -24,25 +25,25 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-public class SolarAccumulator extends BlockTileEntity<TileEntityAccumulator>
+public class CrystalCell extends BlockTileEntity<TileEntityCrystalCell>
 {
-	public SolarAccumulator(String name)
+	public CrystalCell(String name)
 	{
 		super(name, Material.ROCK, SoundType.STONE, 2F, 3F, "pickaxe", 1, CreativeTabs.DECORATIONS);
 	}
 
 	//https://mcforge.readthedocs.io/en/latest/tileentities/tileentity/
 	
-	public Class<TileEntityAccumulator> getTileEntityClass() 
+	public Class<TileEntityCrystalCell> getTileEntityClass() 
 	{
-		return TileEntityAccumulator.class;
+		return TileEntityCrystalCell.class;
 	}
 	
 	@Nullable
 	@Override
-	public TileEntityAccumulator createTileEntity(World world, IBlockState state) 
+	public TileEntityCrystalCell createTileEntity(World world, IBlockState state) 
 	{
-		return new TileEntityAccumulator();
+		return new TileEntityCrystalCell();
 	}
 	
 	@Override
@@ -62,7 +63,7 @@ public class SolarAccumulator extends BlockTileEntity<TileEntityAccumulator>
 	{
 		if (!world.isRemote) 
 		{
-			TileEntityAccumulator tile = getTileEntity(world, pos);
+			TileEntityCrystalCell tile = getTileEntity(world, pos);
 			IItemHandler itemHandler = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side);
 			if (!player.isSneaking()) 
 			{
@@ -95,7 +96,7 @@ public class SolarAccumulator extends BlockTileEntity<TileEntityAccumulator>
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state) 
 	{
-		TileEntityAccumulator tile = getTileEntity(world, pos);
+		TileEntityCrystalCell tile = getTileEntity(world, pos);
 		IItemHandler itemHandler = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
 		ItemStack stack = itemHandler.getStackInSlot(0);
 		if (!stack.isEmpty()) 

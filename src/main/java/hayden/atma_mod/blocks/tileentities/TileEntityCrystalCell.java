@@ -2,7 +2,6 @@ package hayden.atma_mod.blocks.tileentities;
 
 import javax.annotation.Nullable;
 
-import hayden.atma_mod.blocks.CrystalCell;
 import hayden.atma_mod.items.AtmaCrystal;
 import hayden.atma_mod.messages.PacketRequestUpdatePedestal;
 import hayden.atma_mod.messages.PacketUpdatePedestal;
@@ -17,7 +16,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileEntityAccumulator extends TileEntity implements ITickable
+public class TileEntityCrystalCell extends TileEntityAccumulator 
 {
 	
 	public ItemStackHandler inventory = new ItemStackHandler(1) 
@@ -28,7 +27,7 @@ public class TileEntityAccumulator extends TileEntity implements ITickable
 			if (!world.isRemote) 
 			{
 				lastChangeTime = world.getTotalWorldTime();
-				PacketHandler.INSTANCE.sendToAllAround(new PacketUpdatePedestal(TileEntityAccumulator.this), new NetworkRegistry.TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 64));
+				PacketHandler.INSTANCE.sendToAllAround(new PacketUpdatePedestal(TileEntityCrystalCell.this), new NetworkRegistry.TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 64));
 						
 			}
 		}
@@ -84,20 +83,7 @@ public class TileEntityAccumulator extends TileEntity implements ITickable
 
 
 	@Override
-	public void update() 
-	{
-		if(this.getWorld().canSeeSky(this.getPos()) && this.getWorld().isDaytime() && this.inventory.getStackInSlot(0).getItem() instanceof AtmaCrystal)
-		{
-//			if(this.inventory.getStackInSlot(0).getItemDamage() > this.inventory.getStackInSlot(0).getMaxDamage())
-//			{
-				this.inventory.getStackInSlot(0).setItemDamage(this.inventory.getStackInSlot(0).getItemDamage() - 1);
-//			}
-				if(world.getBlockState(this.getPos().down()) instanceof CrystalCell)
-				{
-					
-				}
-		}
-	}
+	public void update() {}
 
 
 }

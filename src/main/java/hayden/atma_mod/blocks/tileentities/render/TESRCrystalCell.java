@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.ForgeHooksClient;
 
-public class TESRAccumulator extends TileEntitySpecialRenderer<TileEntityAccumulator>
+public class TESRCrystalCell extends TileEntitySpecialRenderer<TileEntityAccumulator>
 {
 	public BlockPos thisPos;
 	
@@ -30,7 +30,7 @@ public class TESRAccumulator extends TileEntitySpecialRenderer<TileEntityAccumul
 			GlStateManager.tryBlendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
 			GlStateManager.pushMatrix();
 			double offset = Math.sin((te.getWorld().getTotalWorldTime() - te.lastChangeTime + partialTicks) / 8) / 8.0;
-			GlStateManager.translate(x + 0.5, y + 1.6 + offset, z + 0.5);
+			GlStateManager.translate(x + 0.5, y + 0, z + 0.5);
 			GlStateManager.rotate((te.getWorld().getTotalWorldTime() + partialTicks) * 4, 0, 1, 0);
 	
 			IBakedModel model = Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(stack, te.getWorld(), null);
