@@ -1,6 +1,53 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "atma_mod:items/atma_crystal"
-    }
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "blocks/gold_block",
+		"particle": "blocks/gold_block"
+	},
+	"elements": [
+		{
+			"from": [6.02446, 1, 5.99998],
+			"to": [10.02446, 5, 9.99998],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8.01222, 1.00002, 7.98776]},
+			"faces": {
+				"north": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"east": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"south": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"west": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"up": {"uv": [1, 1, 15, 15], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [1, 1, 15, 15], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [6, 1, 6],
+			"to": [10, 5, 10],
+			"rotation": {"angle": 45, "axis": "x", "origin": [8.00873, 3.00002, 7.99126]},
+			"faces": {
+				"north": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"east": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"south": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"west": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"up": {"uv": [1, 1, 15, 15], "rotation": 270, "texture": "#0"},
+				"down": {"uv": [1, 1, 15, 15], "rotation": 90, "texture": "#0"}
+			}
+		},
+		{
+			"from": [6.01592, 0.99151, 6],
+			"to": [10.01592, 4.99151, 10],
+			"rotation": {"angle": 45, "axis": "z", "origin": [8.01595, 2.98275, 7.99122]},
+			"faces": {
+				"north": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"east": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"south": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"west": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"up": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"down": {"uv": [1, 1, 15, 15], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 7.25, 0]
+		}
+	}
 }
