@@ -30,4 +30,6 @@ public class CommonProxy
 	{
 		PacketHandler.init();
 	}
+	
+	public void registerRenderers() {}
 }

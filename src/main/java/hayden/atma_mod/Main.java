@@ -41,9 +41,14 @@ public class Main
     public void preInit(FMLPreInitializationEvent event)
     {
     	MinecraftForge.EVENT_BUS.register(new Events());
+    	
     	MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
     	ModCapabilities.registerCapabilities();
+    	
     	PacketHandler.init();
+    	
+    	proxy.registerRenderers();
+    	
 		GameRegistry.registerWorldGenerator(new ModWorldGen(), 3);
     }    
     @EventHandler

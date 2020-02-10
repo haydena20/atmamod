@@ -11,6 +11,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class AtmaCrystal extends ItemBase
 {
@@ -32,18 +34,19 @@ public class AtmaCrystal extends ItemBase
 		ItemStack item = playerIn.getHeldItem(handIn);
 		if((item.getItemDamage() >= item.getMaxDamage()) || (item.getItemDamage()+item.getMaxDamage()/10) >= item.getMaxDamage())
 		{
+			atma.addAtma((item.getMaxDamage()-item.getItemDamage()));
 			item.setItemDamage(item.getMaxDamage());
-			if(!item.getDisplayName().contains("Drained"))
-				item.setStackDisplayName("§rDrained " + item.getDisplayName());
+//			if(!item.getDisplayName().contains("Drained"))
+//				item.setStackDisplayName("§rDrained " + item.getDisplayName());
 		}
 		else
 		{
-			if(item.getDisplayName().contains("Drained"))
-				item.setStackDisplayName(item.getDisplayName().substring(7));
+//			if(item.getDisplayName().contains("Drained"))
+//				item.setStackDisplayName(item.getDisplayName().substring(7));
 			
 			item.damageItem((item.getMaxDamage()/10)-1, playerIn);
 			atma.addAtma((item.getMaxDamage()/10));
-			((EntityPlayer)playerIn).getCooldownTracker().setCooldown(this, 40);
+			((EntityPlayer)playerIn).getCooldownTracker().setCooldown(this, 20);
 			Events.updatePlayerAtma((EntityPlayer) playerIn);
 		}
 			
@@ -51,5 +54,4 @@ public class AtmaCrystal extends ItemBase
 		
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, item);
 	}
-	
 }

@@ -7,7 +7,8 @@ import hayden.atma_mod.blocks.AdvBlockBase;
 import hayden.atma_mod.blocks.AtmaProjector;
 import hayden.atma_mod.blocks.BlockBase;
 import hayden.atma_mod.blocks.BlockOre;
-import hayden.atma_mod.blocks.tileentities.AccumulatorEntity;
+import hayden.atma_mod.blocks.SolarAccumulator;
+import hayden.atma_mod.blocks.tileentities.TileEntityAccumulator;
 import hayden.atma_mod.blocks.tileentities.BlockCounter;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -22,11 +23,11 @@ public class ModBlocks
 	public static final List<Block> BLOCKS = new ArrayList<Block>();
 	//TileEntities
 	public static BlockCounter counter = new BlockCounter();
-	public static AccumulatorEntity accumulator = new AccumulatorEntity();
+	public static SolarAccumulator accumulator = new SolarAccumulator("solar_accumulator");
 	
 	//Machines
 //	public static final SolarAccumulator SOLAR_ACCUMULATOR = new SolarAccumulator("solar_accumulator");
-	public static final BlockBase SOLAR_ACCUMULATOR = new BlockBase("solar_accumulator", Material.ROCK);
+//	public static final BlockBase SOLAR_ACCUMULATOR = new BlockBase("solar_accumulator", Material.ROCK);
 //	public static final BlockBase CRUDE_PROJECTOR = new BlockBase("CRUDE_PROJECTOR", Material.ROCK);
 	public static final AtmaProjector CRUDE_PROJECTOR = new AtmaProjector("CRUDE_PROJECTOR", Material.ROCK);
 	
@@ -44,11 +45,8 @@ public class ModBlocks
 
 	public static void register(IForgeRegistry<Block> registry) 
 	{
-		registry.registerAll
-		(
-				counter				
-		);
-	
+		registry.registerAll(counter, accumulator);
+		
 		GameRegistry.registerTileEntity(accumulator.getTileEntityClass(), accumulator.getRegistryName().toString());
 		GameRegistry.registerTileEntity(counter.getTileEntityClass(), counter.getRegistryName().toString());
 	}

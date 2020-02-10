@@ -3,7 +3,8 @@ package hayden.atma_mod.blocks;
 import javax.annotation.Nullable;
 
 import hayden.atma_mod.Main;
-import hayden.atma_mod.blocks.tileentities.AccumulatorEntity;
+import hayden.atma_mod.blocks.tileentities.TileEntityAccumulator;
+import hayden.atma_mod.items.AtmaCrystal;
 import hayden.atma_mod.blocks.tileentities.BlockTileEntity;
 import hayden.atma_mod.utils.Reference;
 import net.minecraft.block.SoundType;
@@ -23,7 +24,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-public class SolarAccumulator extends BlockTileEntity<AccumulatorEntity>
+public class SolarAccumulator extends BlockTileEntity<TileEntityAccumulator>
 {
 	public SolarAccumulator(String name)
 	{
@@ -32,16 +33,16 @@ public class SolarAccumulator extends BlockTileEntity<AccumulatorEntity>
 
 	//https://mcforge.readthedocs.io/en/latest/tileentities/tileentity/
 	
-	public Class<AccumulatorEntity> getTileEntityClass() 
+	public Class<TileEntityAccumulator> getTileEntityClass() 
 	{
-		return AccumulatorEntity.class;
+		return TileEntityAccumulator.class;
 	}
 	
 	@Nullable
 	@Override
-	public AccumulatorEntity createTileEntity(World world, IBlockState state) 
+	public TileEntityAccumulator createTileEntity(World world, IBlockState state) 
 	{
-		return new AccumulatorEntity();
+		return new TileEntityAccumulator();
 	}
 	
 	@Override
@@ -61,7 +62,7 @@ public class SolarAccumulator extends BlockTileEntity<AccumulatorEntity>
 	{
 		if (!world.isRemote) 
 		{
-			AccumulatorEntity tile = getTileEntity(world, pos);
+			TileEntityAccumulator tile = getTileEntity(world, pos);
 			IItemHandler itemHandler = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side);
 			if (!player.isSneaking()) 
 			{
@@ -70,7 +71,8 @@ public class SolarAccumulator extends BlockTileEntity<AccumulatorEntity>
 					player.setHeldItem(hand, itemHandler.extractItem(0, 64, false));
 				} else 
 				{
-					player.setHeldItem(hand, itemHandler.insertItem(0, player.getHeldItem(hand), false));
+					if(player.getHeldItemMainhand().getItem() instanceof AtmaCrystal)
+						player.setHeldItem(hand, itemHandler.insertItem(0, player.getHeldItem(hand), false));
 				}
 				tile.markDirty();
 			} else
@@ -79,11 +81,12 @@ public class SolarAccumulator extends BlockTileEntity<AccumulatorEntity>
 				if (!stack.isEmpty()) 
 				{
 					String localized = Main.proxy.localize(stack.getUnlocalizedName() + ".name");
-					player.sendMessage(new TextComponentString(stack.getCount() + "x " + localized));
+					player.sendMessage(new TextComponentString(stack.getCount() + "x " + localized + ": " + (stack.getMaxDamage() - stack.getItemDamage())));
 				} else 
 				{
 					player.sendMessage(new TextComponentString("Empty"));
 				}
+				tile.markDirty();
 			}
 		}
 		return true;
@@ -92,7 +95,7 @@ public class SolarAccumulator extends BlockTileEntity<AccumulatorEntity>
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state) 
 	{
-		AccumulatorEntity tile = getTileEntity(world, pos);
+		TileEntityAccumulator tile = getTileEntity(world, pos);
 		IItemHandler itemHandler = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
 		ItemStack stack = itemHandler.getStackInSlot(0);
 		if (!stack.isEmpty()) 
@@ -106,5 +109,17 @@ public class SolarAccumulator extends BlockTileEntity<AccumulatorEntity>
 	public static void setState(boolean burning, World world, BlockPos pos) 
 	{
 		
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
 	}
 }
