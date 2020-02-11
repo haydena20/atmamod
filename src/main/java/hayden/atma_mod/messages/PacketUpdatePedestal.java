@@ -1,6 +1,7 @@
 package hayden.atma_mod.messages;
 
 import hayden.atma_mod.blocks.tileentities.TileEntityAccumulator;
+import hayden.atma_mod.blocks.tileentities.TileEntityCrystalCell;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
@@ -32,6 +33,11 @@ public class PacketUpdatePedestal implements IMessage
 	{
 	}
 	
+	public PacketUpdatePedestal(TileEntityCrystalCell te) 
+	{
+		this(te.getPos(), te.inventory.getStackInSlot(0), te.lastChangeTime);
+	}
+
 	@Override
 	public void toBytes(ByteBuf buf) {
 		buf.writeLong(pos.toLong());

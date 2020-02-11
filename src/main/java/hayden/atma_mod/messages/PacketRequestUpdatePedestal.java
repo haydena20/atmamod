@@ -1,6 +1,7 @@
 package hayden.atma_mod.messages;
 
 import hayden.atma_mod.blocks.tileentities.TileEntityAccumulator;
+import hayden.atma_mod.blocks.tileentities.TileEntityCrystalCell;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -26,6 +27,11 @@ public class PacketRequestUpdatePedestal implements IMessage {
 	public PacketRequestUpdatePedestal() {
 	}
 	
+	public PacketRequestUpdatePedestal(TileEntityCrystalCell te) 
+	{
+		this(te.getPos(), te.getWorld().provider.getDimension());
+	}
+
 	@Override
 	public void toBytes(ByteBuf buf) {
 		buf.writeLong(pos.toLong());

@@ -1,5 +1,7 @@
 package hayden.atma_mod.items;
 
+import java.util.Random;
+
 import org.lwjgl.input.Keyboard;
 
 import baubles.api.BaubleType;
@@ -30,11 +32,14 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SpeedCharm extends ItemBase implements IBauble
 {
@@ -87,6 +92,10 @@ public class SpeedCharm extends ItemBase implements IBauble
 			if(player.ticksExisted % 3 == 0)
 				player.playSound(SoundEvents.ITEM_FLINTANDSTEEL_USE, 1, 2);
 			
+			for(int i = 0; i < cd.getTicks() / cd.getMaxTicks() * 15; i++)
+				getParticles(player.world, player.posX, player.posY, player.posZ, new Random());
+			
+			
 			atma.removeAtma(50.0F);
 			itemstack.damageItem(1, player);	
 			
@@ -101,6 +110,20 @@ public class SpeedCharm extends ItemBase implements IBauble
 			Events.updatePlayerAtma((EntityPlayer) player);
 		}
 		
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public static void getParticles(World world, double x, double y, double z, Random random)
+	{
+		float fx = (float)x;
+		float fy = (float)y + 0.1F;
+		float fz = (float)z;
+		
+		float fx1 = random.nextFloat() * 0.6F - 0.3F;
+		float fy1 = random.nextFloat() * 0F;
+		float fz1 = random.nextFloat() * -0.6F - -0.3F;
+		
+		Minecraft.getMinecraft().world.spawnParticle(EnumParticleTypes.FLAME, (double)(fx + fx1), (double)(fy + fy1), (double)(fz + fz1), 0.00D, 0.00D, 0.00D);
 	}
 	
 	@Override

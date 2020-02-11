@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileEntityCrystalCell extends TileEntityAccumulator 
+public class TileEntityCrystalCell extends TileEntityAccumulator implements ITickable
 {
 	
 	public ItemStackHandler inventory = new ItemStackHandler(1) 
@@ -28,7 +28,6 @@ public class TileEntityCrystalCell extends TileEntityAccumulator
 			{
 				lastChangeTime = world.getTotalWorldTime();
 				PacketHandler.INSTANCE.sendToAllAround(new PacketUpdatePedestal(TileEntityCrystalCell.this), new NetworkRegistry.TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 64));
-						
 			}
 		}
 	};

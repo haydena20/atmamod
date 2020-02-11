@@ -27,9 +27,9 @@ import net.minecraftforge.items.IItemHandler;
 
 public class CrystalCell extends BlockTileEntity<TileEntityCrystalCell>
 {
-	public CrystalCell(String name)
+	public CrystalCell()
 	{
-		super(name, Material.ROCK, SoundType.STONE, 2F, 3F, "pickaxe", 1, CreativeTabs.DECORATIONS);
+		super("crystal_cell", Material.ROCK, SoundType.STONE, 2F, 3F, "pickaxe", 1, CreativeTabs.DECORATIONS);
 	}
 
 	//https://mcforge.readthedocs.io/en/latest/tileentities/tileentity/

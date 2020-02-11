@@ -1,8 +1,11 @@
 package hayden.atma_mod.blocks.tileentities;
 
+import java.util.Random;
+
 import javax.annotation.Nullable;
 
 import hayden.atma_mod.blocks.CrystalCell;
+import hayden.atma_mod.blocks.SolarAccumulator;
 import hayden.atma_mod.items.AtmaCrystal;
 import hayden.atma_mod.messages.PacketRequestUpdatePedestal;
 import hayden.atma_mod.messages.PacketUpdatePedestal;
@@ -86,16 +89,24 @@ public class TileEntityAccumulator extends TileEntity implements ITickable
 	@Override
 	public void update() 
 	{
-		if(this.getWorld().canSeeSky(this.getPos()) && this.getWorld().isDaytime() && this.inventory.getStackInSlot(0).getItem() instanceof AtmaCrystal)
+		if(this.getWorld().canSeeSky(this.getPos()) && this.getWorld().isDaytime())
 		{
-//			if(this.inventory.getStackInSlot(0).getItemDamage() > this.inventory.getStackInSlot(0).getMaxDamage())
-//			{
+			SolarAccumulator.randomDisplayTick(this.getWorld(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), new Random());
+			
+			if(this.inventory.getStackInSlot(0).getItem() instanceof AtmaCrystal)
 				this.inventory.getStackInSlot(0).setItemDamage(this.inventory.getStackInSlot(0).getItemDamage() - 1);
-//			}
-				if(world.getBlockState(this.getPos().down()) instanceof CrystalCell)
+			
+			if(world.getBlockState(this.getPos().down()) instanceof CrystalCell)
+			{
+				TileEntity cc = world.getTileEntity(this.getPos().down());
+				if(cc.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null))
 				{
-					
+					if(cc.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0).getItem() instanceof AtmaCrystal)
+					{
+						cc.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0).setItemDamage(cc.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0).getItemDamage() - 1);
+					}
 				}
+			}
 		}
 	}
 

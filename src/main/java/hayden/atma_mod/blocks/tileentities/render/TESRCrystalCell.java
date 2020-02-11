@@ -3,6 +3,7 @@ package hayden.atma_mod.blocks.tileentities.render;
 import org.lwjgl.opengl.GL11;
 
 import hayden.atma_mod.blocks.tileentities.TileEntityAccumulator;
+import hayden.atma_mod.blocks.tileentities.TileEntityCrystalCell;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -15,12 +16,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.ForgeHooksClient;
 
-public class TESRCrystalCell extends TileEntitySpecialRenderer<TileEntityAccumulator>
+public class TESRCrystalCell extends TileEntitySpecialRenderer<TileEntityCrystalCell>
 {
 	public BlockPos thisPos;
 	
 	@Override
-	public void render(TileEntityAccumulator te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+	public void render(TileEntityCrystalCell te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
 		ItemStack stack = te.inventory.getStackInSlot(0);
 		if (!stack.isEmpty()) {
 			GlStateManager.enableRescaleNormal();

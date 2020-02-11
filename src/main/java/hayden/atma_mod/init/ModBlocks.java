@@ -5,22 +5,16 @@ import java.util.List;
 
 import hayden.atma_mod.blocks.AdvBlockBase;
 import hayden.atma_mod.blocks.AtmaProjector;
-import hayden.atma_mod.blocks.BlockBase;
 import hayden.atma_mod.blocks.BlockOre;
+import hayden.atma_mod.blocks.CrystalCell;
 import hayden.atma_mod.blocks.SolarAccumulator;
-import hayden.atma_mod.blocks.tileentities.TileEntityAccumulator;
 import hayden.atma_mod.blocks.tileentities.BlockCounter;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.registries.IForgeRegistry;
 
 public class ModBlocks 
 {
@@ -28,6 +22,7 @@ public class ModBlocks
 	//TileEntities
 	public static BlockCounter counter = new BlockCounter();
 	public static SolarAccumulator accumulator = new SolarAccumulator();
+	public static CrystalCell crystalcell = new CrystalCell();
 	
 	//Machines
 //	public static final SolarAccumulator SOLAR_ACCUMULATOR = new SolarAccumulator("solar_accumulator");
@@ -56,5 +51,6 @@ public class ModBlocks
 		
 		GameRegistry.registerTileEntity(accumulator.getTileEntityClass(), accumulator.getRegistryName().toString());
 		GameRegistry.registerTileEntity(counter.getTileEntityClass(), counter.getRegistryName().toString());
+		GameRegistry.registerTileEntity(crystalcell.getTileEntityClass(), crystalcell.getRegistryName().toString());
 	}
 }
